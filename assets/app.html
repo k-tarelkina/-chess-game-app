@@ -1,13 +1,39 @@
-<html>
+<!DOCTYPE html>
+<html lang="en" data-framework="javascript">
   <head>
-    <title>MyApp -- (edit this title in app.html)</title>
-    <style>
-    body {
-      font-family: -apple-system, 'Segoe UI Light', Ubuntu, Arial, sans-serif;
-    }
-    </style>
+    <meta charset="utf-8" />
+    <title>Points detection</title>
+    <link rel="stylesheet" href="styles.css" />
   </head>
-  <body>
-    <h1>Hello World!</h1>
+
+  <body class="wrapper">
+    <header class="header">
+      <h1>Points detection</h1>
+    </header>
+
+    <main class="main">
+      <input
+        type="file"
+        id="imageInput"
+        class="file-input"
+        size="24"
+        accept="image/png, image/jpeg"
+        onchange="setInput(this);"
+        alt=""
+      />
+
+      <section class="options-container">
+        <img class="input-image" id="inputImage" />
+        <ul>
+          <li>option1</li>
+          <li>option2</li>
+        </ul>
+      </section>
+
+      <canvas id="chart" class="chart"></canvas>
+    </main>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="script.js"></script>
   </body>
 </html>
