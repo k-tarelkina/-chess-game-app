@@ -2,38 +2,19 @@
 <html lang="en" data-framework="javascript">
   <head>
     <meta charset="utf-8" />
-    <title>Points detection</title>
+    <title>Chess Game</title>
     <link rel="stylesheet" href="styles.css" />
   </head>
 
   <body class="wrapper">
     <header class="header">
-      <h1>Points detection</h1>
+      <h1>Chess Game</h1>
     </header>
 
     <main class="main">
-      <input
-        type="file"
-        id="imageInput"
-        class="file-input"
-        size="24"
-        accept="image/png, image/jpeg"
-        onchange="setInput(this);"
-        alt=""
-      />
-
-      <section class="options-container">
-        <img class="input-image" id="inputImage" />
-        <ul>
-          <li>option1</li>
-          <li>option2</li>
-        </ul>
-      </section>
-
-      <canvas id="chart" class="chart"></canvas>
+      <div id="chess-board" class="chess-board"></div>
     </main>
 
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="script.js"></script>
   </body>
 </html>
