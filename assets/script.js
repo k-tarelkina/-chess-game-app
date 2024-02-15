@@ -9,20 +9,27 @@ const COLOR = {
   White: "White",
 };
 
+const STATE = {
+  Selected: "selected",
+  HighlightedFree: "highlighted-free",
+  HighlightedOccupied: "highlighted-occupied",
+};
+
 class Cell {
-  piece = null;
-  element = null;
+  piece;
+  element;
   x = 0;
   y = 0;
 
   constructor(x, y, chessBoard) {
     this.x = x;
     this.y = y;
+
     this.chessBoard = chessBoard;
     this.element = document.createElement("div");
 
     this.element.addEventListener("click", () => {
-      this.select();
+      this.chessBoard.onCellClicked(x, y);
     });
 
     if ((x % 2 == 1 && y % 2 == 0) || (x % 2 == 0 && y % 2 == 1)) {
@@ -40,38 +47,62 @@ class Cell {
   }
 
   select() {
-    this.chessBoard.clearSelectedCells();
     if (this.piece) {
-      this.element.classList.add("selected");
-      this.chessBoard.setSelectedCell(this.x, this.y);
+      this.element.classList.add(STATE.Selected);
+      this.chessBoard.highlightCells(this.piece.getPossiblePaths());
+    }
+  }
+
+  highlight() {
+    if (this.piece) {
+      this.element.classList.add(STATE.HighlightedOccupied);
+    } else {
+      this.element.classList.add(STATE.HighlightedFree);
     }
   }
 
   clear() {
     this.element.innerText = "";
-    // remove piece
+    this.piece = undefined;
   }
 }
 
 class Chessboard {
   cells = [[], [], [], [], [], [], [], []];
 
-  peviouslySelectedCells = [];
+  markedCells = [];
+  selectedCell = undefined;
 
   setBlackPiecesUser(username) {}
   setWhitePiecesUser(username) {}
-
   startGame() {}
 
-  clearSelectedCells() {
-    for (const cell of this.peviouslySelectedCells) {
-      cell.element.classList.remove("selected");
+  onCellClicked(x, y) {
+    const piece = this.selectedCell?.piece;
+    if (piece) {
+      piece.moveTo(x, y);
+      this.clearCellsStyles();
+      this.selectedCell = undefined;
+      this.markedCells = [];
+    } else {
+      this.selectedCell = this.cells[x][y];
+      this.cells[x][y].select();
     }
-    this.peviouslySelectedCells = [];
   }
 
-  setSelectedCell(x, y) {
-    this.peviouslySelectedCells.push(this.cells[x][y]);
+  clearCellsStyles() {
+    for (const cell of this.markedCells) {
+      cell.element.classList.remove(STATE.HighlightedOccupied);
+      cell.element.classList.remove(STATE.HighlightedFree);
+    }
+    this.selectedCell?.element.classList.remove(STATE.Selected);
+  }
+
+  highlightCells(coordinates) {
+    for (const c of coordinates) {
+      this.cells[c[0]][c[1]].highlight();
+      this.markedCells.push(this.cells[c[0]][c[1]]);
+    }
   }
 
   clearCell(x, y) {
@@ -143,13 +174,13 @@ class ChessPiece {
   moveTo(x, y) {
     if (!this.canMoveTo(x, y)) {
       console.log("Cannot move to these coordinates");
-    } else {
-      this.x = x;
-      this.y = y;
-      this.chessBoard.clearCell(x, y);
-      const prevPiece = this.chessBoard.putPiece(x, y, this);
-      prevPiece?.die();
+      return;
     }
+    this.chessBoard.clearCell(this.x, this.y);
+    this.x = x;
+    this.y = y;
+    const prevPiece = this.chessBoard.putPiece(x, y, this);
+    prevPiece?.die();
   }
 
   die() {
@@ -162,6 +193,10 @@ class ChessPiece {
 
   getName() {
     return "Chess piece";
+  }
+
+  getPossiblePaths() {
+    return [];
   }
 }
 
@@ -177,10 +212,23 @@ Pawn - Moves one square forward, but on its first move, it can move two squares 
 
 class King extends ChessPiece {
   canMoveTo(x, y) {
-    return Math.abs(this.x - x) > 1 || Math.abs(this.y - y) > 1;
+    return Math.abs(this.x - x) <= 1 && Math.abs(this.y - y) <= 1;
   }
 
   getName() {
     return "King";
+  }
+
+  getPossiblePaths() {
+    return [
+      [this.x - 1, this.y + 1],
+      [this.x + 1, this.y + 1],
+      [this.x + 1, this.y - 1],
+      [this.x - 1, this.y - 1],
+      [this.x - 1, this.y],
+      [this.x + 1, this.y],
+      [this.x, this.y - 1],
+      [this.x, this.y + 1],
+    ].filter((c) => c[0] >= 0 && c[1] >= 0 && c[0] < 8 && c[1] < 8);
   }
 }
