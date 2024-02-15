@@ -57,14 +57,22 @@ input[type="file"]::file-selector-button:hover,
   grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
 }
 
+.selected {
+  border-width: 5px;
+  border-color: cadetblue;
+  border-style: solid;
+}
+
 .white {
   height: 100px;
   width: 100px;
-  background-color: black;
+  background-color: white;
+  color: black;
 }
 
 .black {
   height: 100px;
   width: 100px;
-  background-color: white;
+  background-color: black;
+  color: white;
 }
