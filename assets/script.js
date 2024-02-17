@@ -120,7 +120,9 @@ class Chessboard {
   enableColor() {}
 
   addDeadPiece(piece) {
-    // Render new piece
+    document.getElementById("whitePiecesContainer").innerHTML =
+      document.getElementById("whitePiecesContainer").innerHTML +
+      piece.getName();
   }
 
   initializeBoard() {
