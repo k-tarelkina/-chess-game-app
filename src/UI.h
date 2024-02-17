@@ -5,9 +5,24 @@
 #include <iostream>
 
 using namespace ultralight;
-class UI : public AppListener,
-           public WindowListener,
+
+class UI : public WindowListener,
            public LoadListener,
            public ViewListener
 {
-}
+public:
+  UI(RefPtr<Window> window);
+  ~UI();
+
+  virtual void OnDOMReady(ultralight::View *caller,
+                          uint64_t frame_id,
+                          bool is_main_frame,
+                          const String &url) override;
+
+  void OnTest(const JSObject &obj, const JSArgs &args);
+  void OnResize(ultralight::Window *window, uint32_t width, uint32_t height);
+
+protected:
+  RefPtr<Window> window_;
+  RefPtr<Overlay> overlay_;
+};

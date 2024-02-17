@@ -2,6 +2,7 @@
 #include <AppCore/AppCore.h>
 #include <stdio.h>
 #include <iostream>
+#include "UI.h"
 
 using namespace ultralight;
 
@@ -19,37 +20,23 @@ public:
   virtual void Run();
 
   // This is called continuously from the app's main loop.
-  virtual void OnUpdate() override;
+  // virtual void OnUpdate() override;
 
   // This is called when the window is closing.
   virtual void OnClose(ultralight::Window *window) override;
 
   // This is called whenever the window resizes.
-  virtual void OnResize(ultralight::Window *window, uint32_t width, uint32_t height) override;
+  // virtual void OnResize(ultralight::Window *window, uint32_t width, uint32_t height) override;
 
-  // This is called when the page finishes a load in one of its frames.
-  virtual void OnFinishLoading(ultralight::View *caller,
-                               uint64_t frame_id,
-                               bool is_main_frame,
-                               const String &url) override;
-
-  // This is called when the DOM has loaded in one of its frames.
-  virtual void OnDOMReady(ultralight::View *caller,
-                          uint64_t frame_id,
-                          bool is_main_frame,
-                          const String &url) override;
-
-  // This is called when the page requests to change the Cursor.
-  virtual void OnChangeCursor(ultralight::View *caller,
-                              Cursor cursor) override;
-
-  virtual void OnChangeTitle(ultralight::View *caller,
-                             const String &title) override;
-
-  void OnTest(const JSObject &obj, const JSArgs &args);
+  // // This is called when the page finishes a load in one of its frames.
+  // virtual void OnFinishLoading(ultralight::View *caller,
+  //                              uint64_t frame_id,
+  //                              bool is_main_frame,
+  //                              const String &url) override;
 
 protected:
   RefPtr<App> app_;
+  std::unique_ptr<UI> ui_;
   RefPtr<Window> window_;
-  RefPtr<Overlay> overlay_;
+  // RefPtr<Overlay> overlay_;
 };
