@@ -42,6 +42,7 @@ class Cell {
   putPiece(piece) {
     const prevPiece = this.piece;
     this.piece = piece;
+
     this.element.innerText = this.piece.getName();
     return prevPiece;
   }
@@ -110,8 +111,11 @@ class Chessboard {
   }
 
   putPiece(x, y, piece) {
-    console.log(this.cells);
-    this.cells[x][y].putPiece(piece);
+    return this.cells[x][y].putPiece(piece);
+  }
+
+  getPiece(x, y) {
+    return this.cells[x][y].piece;
   }
 
   disableColor() {}
@@ -136,15 +140,6 @@ class Chessboard {
   }
 
   initializePieces() {
-    /*
-King - Moves one square in any direction.
-Queen - Moves any number of squares diagonally, horizontally, or vertically.
-Rook - Moves any number of squares horizontally or vertically.
-Bishop - Moves any number of squares diagonally.
-Knight - Moves in an ‘L-shape,’ two squares in a straight direction, and then one square perpendicular to that.
-Pawn - Moves one square forward, but on its first move, it can move two squares forward. It captures diagonally one square forward.
-
-*/
     const piecesConfig = [
       {
         create: () => King(),
@@ -155,17 +150,22 @@ Pawn - Moves one square forward, but on its first move, it can move two squares 
       },
     ];
 
-    const king = new King(0, 0, this);
+    const king = new King(0, 0, COLOR.White, this);
+    const queen = new Queen(0, 1, COLOR.White, this);
+
+    console.log(this.cells);
   }
 }
 
 class ChessPiece {
   x;
   y;
+  color;
 
-  constructor(x, y, chessBoard) {
+  constructor(x, y, color, chessBoard) {
     this.x = x;
     this.y = y;
+    this.color = color;
     this.chessBoard = chessBoard;
     this.image = "image";
     this.chessBoard.putPiece(x, y, this);
@@ -212,7 +212,7 @@ Pawn - Moves one square forward, but on its first move, it can move two squares 
 
 class King extends ChessPiece {
   canMoveTo(x, y) {
-    return Math.abs(this.x - x) <= 1 && Math.abs(this.y - y) <= 1;
+    return !!this.getPossiblePaths().find((c) => c[0] === x && c[1] === y);
   }
 
   getName() {
@@ -229,6 +229,57 @@ class King extends ChessPiece {
       [this.x + 1, this.y],
       [this.x, this.y - 1],
       [this.x, this.y + 1],
-    ].filter((c) => c[0] >= 0 && c[1] >= 0 && c[0] < 8 && c[1] < 8);
+    ].filter((c) => {
+      if (c[0] >= 0 && c[1] >= 0 && c[0] < 8 && c[1] < 8) {
+        console.log(this.chessBoard.getPiece(c[0], c[1]));
+
+        console.log(this.chessBoard.getPiece(c[0], c[1])?.color);
+      }
+
+      return (
+        c[0] >= 0 &&
+        c[1] >= 0 &&
+        c[0] < 8 &&
+        c[1] < 8 &&
+        this.chessBoard.getPiece(c[0], c[1])?.color !== this.color
+      );
+    });
+  }
+}
+
+class Queen extends ChessPiece {
+  canMoveTo(x, y) {
+    return !!this.getPossiblePaths().find((c) => c[0] === x && c[1] === y);
+  }
+
+  getName() {
+    return "Queen";
+  }
+
+  getPossiblePaths() {
+    return [
+      [this.x - 1, this.y + 1],
+      [this.x + 1, this.y + 1],
+      [this.x + 1, this.y - 1],
+      [this.x - 1, this.y - 1],
+      [this.x - 1, this.y],
+      [this.x + 1, this.y],
+      [this.x, this.y - 1],
+      [this.x, this.y + 1],
+    ].filter((c) => {
+      if (c[0] >= 0 && c[1] >= 0 && c[0] < 8 && c[1] < 8) {
+        console.log(this.chessBoard.getPiece(c[0], c[1]));
+
+        console.log(this.chessBoard.getPiece(c[0], c[1])?.color);
+      }
+
+      return (
+        c[0] >= 0 &&
+        c[1] >= 0 &&
+        c[0] < 8 &&
+        c[1] < 8 &&
+        this.chessBoard.getPiece(c[0], c[1])?.color !== this.color
+      );
+    });
   }
 }
