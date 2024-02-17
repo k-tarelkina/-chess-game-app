@@ -1,9 +1,3 @@
-window.addEventListener("load", () => {
-  const chessBoard = new Chessboard();
-  chessBoard.initializeBoard();
-  chessBoard.initializePieces();
-});
-
 const COLOR = {
   Black: "Black",
   White: "White",
@@ -21,15 +15,15 @@ class Cell {
   x = 0;
   y = 0;
 
-  constructor(x, y, chessBoard) {
+  constructor(x, y, chessboard) {
     this.x = x;
     this.y = y;
 
-    this.chessBoard = chessBoard;
+    this.chessboard = chessboard;
     this.element = document.createElement("div");
 
     this.element.addEventListener("click", () => {
-      this.chessBoard.onCellClicked(x, y);
+      this.chessboard.onCellClicked(x, y);
     });
 
     if ((x % 2 == 1 && y % 2 == 0) || (x % 2 == 0 && y % 2 == 1)) {
@@ -50,7 +44,7 @@ class Cell {
   select() {
     if (this.piece) {
       this.element.classList.add(STATE.Selected);
-      this.chessBoard.highlightCells(this.piece.getPossiblePaths());
+      this.chessboard.highlightCells(this.piece.getPossiblePaths());
     }
   }
 
@@ -78,13 +72,17 @@ class Chessboard {
   setWhitePiecesUser(username) {}
   startGame() {}
 
+  clearSelection() {
+    this.clearCellsStyles();
+    this.selectedCell = undefined;
+    this.markedCells = [];
+  }
+
   onCellClicked(x, y) {
     const piece = this.selectedCell?.piece;
     if (piece) {
       piece.moveTo(x, y);
-      this.clearCellsStyles();
-      this.selectedCell = undefined;
-      this.markedCells = [];
+      this.clearSelection();
     } else {
       this.selectedCell = this.cells[x][y];
       this.cells[x][y].select();
@@ -126,14 +124,14 @@ class Chessboard {
   }
 
   initializeBoard() {
-    const chessBoard = document.getElementById("chess-board");
+    const chessboard = document.getElementById("chessboard");
 
-    if (chessBoard) {
+    if (chessboard) {
       for (let i = 7; i >= 0; i--) {
         for (let j = 0; j < 8; j++) {
           const cell = new Cell(i, j, this);
           this.cells[i].push(cell);
-          chessBoard.appendChild(cell.element);
+          chessboard.appendChild(cell.element);
         }
       }
     }
@@ -152,6 +150,7 @@ class Chessboard {
 
     const king = new King(0, 0, COLOR.White, this);
     const queen = new Queen(0, 1, COLOR.White, this);
+    const queen2 = new Queen(0, 2, COLOR.Black, this);
 
     console.log(this.cells);
   }
@@ -162,13 +161,13 @@ class ChessPiece {
   y;
   color;
 
-  constructor(x, y, color, chessBoard) {
+  constructor(x, y, color, chessboard) {
     this.x = x;
     this.y = y;
     this.color = color;
-    this.chessBoard = chessBoard;
+    this.chessboard = chessboard;
     this.image = "image";
-    this.chessBoard.putPiece(x, y, this);
+    this.chessboard.putPiece(x, y, this);
   }
 
   moveTo(x, y) {
@@ -176,15 +175,15 @@ class ChessPiece {
       console.log("Cannot move to these coordinates");
       return;
     }
-    this.chessBoard.clearCell(this.x, this.y);
+    this.chessboard.clearCell(this.x, this.y);
     this.x = x;
     this.y = y;
-    const prevPiece = this.chessBoard.putPiece(x, y, this);
+    const prevPiece = this.chessboard.putPiece(x, y, this);
     prevPiece?.die();
   }
 
   die() {
-    this.chessBoard.addDeadPiece(this);
+    this.chessboard.addDeadPiece(this);
   }
 
   canMoveTo(x, y) {
@@ -231,9 +230,9 @@ class King extends ChessPiece {
       [this.x, this.y + 1],
     ].filter((c) => {
       if (c[0] >= 0 && c[1] >= 0 && c[0] < 8 && c[1] < 8) {
-        console.log(this.chessBoard.getPiece(c[0], c[1]));
+        console.log(this.chessboard.getPiece(c[0], c[1]));
 
-        console.log(this.chessBoard.getPiece(c[0], c[1])?.color);
+        console.log(this.chessboard.getPiece(c[0], c[1])?.color);
       }
 
       return (
@@ -241,7 +240,7 @@ class King extends ChessPiece {
         c[1] >= 0 &&
         c[0] < 8 &&
         c[1] < 8 &&
-        this.chessBoard.getPiece(c[0], c[1])?.color !== this.color
+        this.chessboard.getPiece(c[0], c[1])?.color !== this.color
       );
     });
   }
@@ -268,9 +267,9 @@ class Queen extends ChessPiece {
       [this.x, this.y + 1],
     ].filter((c) => {
       if (c[0] >= 0 && c[1] >= 0 && c[0] < 8 && c[1] < 8) {
-        console.log(this.chessBoard.getPiece(c[0], c[1]));
+        console.log(this.chessboard.getPiece(c[0], c[1]));
 
-        console.log(this.chessBoard.getPiece(c[0], c[1])?.color);
+        console.log(this.chessboard.getPiece(c[0], c[1])?.color);
       }
 
       return (
@@ -278,8 +277,32 @@ class Queen extends ChessPiece {
         c[1] >= 0 &&
         c[0] < 8 &&
         c[1] < 8 &&
-        this.chessBoard.getPiece(c[0], c[1])?.color !== this.color
+        this.chessboard.getPiece(c[0], c[1])?.color !== this.color
       );
     });
   }
 }
+
+const chessboard = new Chessboard();
+
+window.addEventListener("load", () => {
+  chessboard.initializeBoard();
+  chessboard.initializePieces();
+});
+
+function parentOrChildIs(element, id) {
+  console.log(element);
+  if (!element) {
+    return false;
+  }
+  if (element.id == id) {
+    return true;
+  }
+  return parentOrChildIs(element.parentNode, id);
+}
+
+window.addEventListener("click", (e) => {
+  if (!parentOrChildIs(e.target, "chessboard")) {
+    chessboard.clearSelection();
+  }
+});
