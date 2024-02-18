@@ -1,37 +1,35 @@
 #pragma once
 
 #include "ChessboardCell.h"
+#include "ChessPiece.h"
 #include <vector>
 #include <string>
 #include <iostream>
+#include "Queen.h"
 
 class Chessboard
 {
 private:
-  std::vector<std::vector<ChessboardCell>> cells;
-  std::vector<ChessboardCell *> markedCells;
-  Cell *selectedCell;
+  std::vector<std::vector<ChessboardCell>> cells_;
+  Cell &selectedCell_;
+  UI &ui_;
 
 public:
-  Chessboard() : cells(8, std::vector<ChessboardCell>(8)), selectedCell(nullptr) {}
+  explicit Chessboard(UI &ui);
 
   void initializeBoard();
   void initializePieces();
 
-  void clearSelection();
   void onCellClicked(int x, int y);
-  void clearCellsStyles();
 
   void highlightCells(const std::vector<std::pair<int, int>> &coordinates);
+  void selectCell(int x, int y);
+  void clearCellsHighlight();
 
   void clearCell(int x, int y);
 
-  bool putPiece(int x, int y, Piece *piece);
+  ChessPiece *putPiece(int x, int y, ChessPiece *piece);
+  ChessPiece *getPiece(int x, int y);
 
-  Piece *getPiece(int x, int y);
-
-  void disableColor() {}
-  void enableColor() {}
-
-  void addDeadPiece(Piece *piece);
+  void addDeadPiece(ChessPiece *piece);
 };

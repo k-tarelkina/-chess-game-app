@@ -12,9 +12,11 @@ MyApp::MyApp() : app_(App::Create())
   app_->set_listener(this);
 
   // Create the UI
-  ui_.reset(new UI(window_));
-  // OnResize
+  UI *ui = new UI(window_);
+  ui_.reset(ui);
   window_->set_listener(ui_.get());
+
+  new Chessboard(ui);
 }
 
 MyApp::~MyApp()
@@ -25,6 +27,8 @@ MyApp::~MyApp()
 void MyApp::Run()
 {
   app_->Run();
+  chessboard_->initializeBoard();
+  chessboard_->initializePieces();
 }
 
 void MyApp::OnClose(ultralight::Window *window)

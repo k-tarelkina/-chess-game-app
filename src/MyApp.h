@@ -3,6 +3,7 @@
 #include <stdio.h>
 #include <iostream>
 #include "UI.h"
+#include "Chessboard.h"
 
 using namespace ultralight;
 
@@ -20,4 +21,5 @@ protected:
   RefPtr<App> app_;
   std::unique_ptr<UI> ui_;
   RefPtr<Window> window_;
+  Chessboard &chessboard_;
 };

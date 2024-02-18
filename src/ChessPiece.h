@@ -1,24 +1,21 @@
 #pragma once
 
 #include "Chessboard.h"
+#include "ChessboardEnum.h"
 #include <string>
+#include <vector>
+#include <algorithm>
 
 class ChessPiece
 {
 private:
-  int x;
-  int y;
-  std::string color;
-  Chessboard *chessboard;
-  std::string image;
+  int x_;
+  int y_;
+  Color color_;
+  Chessboard *chessboard_;
 
 public:
-  ChessPiece(int x, int y, const std::string &color, Chessboard *chessboard)
-      : x(x), y(y), color(color), chessboard(chessboard), image("image")
-  {
-    this->chessboard->putPiece(x, y, this);
-  }
-
+  ChessPiece(int x, int y, Color color, Chessboard *chessboard);
   virtual ~ChessPiece() {}
 
   void moveTo(int x, int y);
