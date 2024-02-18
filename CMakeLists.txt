@@ -11,15 +11,15 @@ set(SOURCES "src/MyApp.h"
             "src/ChessboardCell.cpp"
             "src/Chessboard.fwd.h"  
             "src/ChessPiece.h" 
-            "src/Queen.cpp"
             "src/ChessboardCell.h"    
             "src/Chessboard.h"  
-            "src/Queen.h"
             "src/Chessboard.cpp"      
             "src/ChessPiece.cpp"   
             "src/ChessboardEnum.h"    
             "src/ChessPiece.fwd.h"  
             "src/UIObserver.h"
+            "src/Queen.cpp"
+            "src/Queen.h"
 )
 
 add_app("${SOURCES}")

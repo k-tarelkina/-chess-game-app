@@ -1,10 +1,9 @@
 #include "Chessboard.h"
 
-Chessboard::Chessboard(UI *ui) : cells_(
-                                     8,
-                                     std::vector<ChessboardCell>(0)),
+Chessboard::Chessboard(UI *ui) : cells_(8, std::vector<ChessboardCell>(0)),
                                  selectedCell_(0), ui_(ui)
 {
+  ui->attachObserver(this);
 }
 
 void Chessboard::initializeBoard()
@@ -17,8 +16,6 @@ void Chessboard::initializeBoard()
       cells_[i].push_back(cell);
     }
   }
-
-  // call to UI
 }
 
 void Chessboard::initializePieces()
@@ -71,6 +68,7 @@ void Chessboard::clearCell(int x, int y)
 
 ChessPiece *Chessboard::putPiece(int x, int y, ChessPiece *piece)
 {
+  // call to UI
   return cells_[x][y].putPiece(piece);
 }
 
