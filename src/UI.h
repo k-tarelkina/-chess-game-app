@@ -4,6 +4,7 @@
 #include <stdio.h>
 #include <iostream>
 
+using ultralight::JSFunction;
 using namespace ultralight;
 
 class UI : public WindowListener,
@@ -25,4 +26,5 @@ public:
 protected:
   RefPtr<Window> window_;
   RefPtr<Overlay> overlay_;
+  JSFunction testJs;
 };
