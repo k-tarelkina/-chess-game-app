@@ -1,3 +1,7 @@
+#pragma once
+
+#include <stdexcept>
+
 enum Color
 {
   Black,
@@ -10,3 +14,5 @@ enum CellState
   HighlightedFree,
   HighlightedOccupied,
 };
+
+const char *colorToString(Color c);

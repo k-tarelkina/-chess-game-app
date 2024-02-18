@@ -17,11 +17,6 @@ UI::~UI()
   view()->set_view_listener(nullptr);
 }
 
-void UI::attachObserver(UIObserver *observer)
-{
-  uiObservers_.push_back(observer);
-}
-
 void UI::OnDOMReady(ultralight::View *caller,
                     uint64_t frame_id,
                     bool is_main_frame,
@@ -35,6 +30,21 @@ void UI::OnDOMReady(ultralight::View *caller,
   JSObject global = JSGlobalObject();
 
   global["onCellClicked"] = BindJSCallback(&UI::onCellClicked);
+
+  for (auto observer : uiObservers_)
+  {
+    observer->onUiReady();
+  }
+}
+
+void UI::OnResize(ultralight::Window *window, uint32_t width, uint32_t height)
+{
+  overlay_->Resize(width, height);
+}
+
+void UI::attachObserver(UIObserver *observer)
+{
+  uiObservers_.push_back(observer);
 }
 
 void UI::onCellClicked(const JSObject &obj, const JSArgs &args)
@@ -51,7 +61,14 @@ void UI::onCellClicked(const JSObject &obj, const JSArgs &args)
   view()->EvaluateScript("testJs('Howdy!')");
 }
 
-void UI::OnResize(ultralight::Window *window, uint32_t width, uint32_t height)
+void UI::putPiece(int x, int y, const std::string &pieceName, Color color)
 {
-  overlay_->Resize(width, height);
+  std::string command = "putPiece(" +
+                        std::to_string(x) + ", " +
+                        std::to_string(y) + ", \"" +
+                        pieceName + "\", \"" +
+                        colorToString(color) + "\")";
+  std::cout << command << std::endl;
+
+  view()->EvaluateScript(command.c_str());
 }

@@ -3,9 +3,12 @@
 
 #include <AppCore/AppCore.h>
 #include <stdio.h>
+#include <string>
 #include <iostream>
 #include <vector>
+
 #include "UIObserver.h"
+#include "ChessboardEnum.h"
 
 using ultralight::JSFunction;
 using namespace ultralight;
@@ -22,12 +25,13 @@ public:
                           uint64_t frame_id,
                           bool is_main_frame,
                           const String &url) override;
+  void OnResize(ultralight::Window *window, uint32_t width, uint32_t height);
 
   void onCellClicked(const JSObject &obj, const JSArgs &args);
-  void OnResize(ultralight::Window *window, uint32_t width, uint32_t height);
-  RefPtr<View> view() { return overlay_->view(); }
 
   void attachObserver(UIObserver *observer);
+
+  void putPiece(int x, int y, const std::string &pieceName, Color color);
 
 protected:
   RefPtr<Window> window_;
@@ -35,4 +39,5 @@ protected:
 
 private:
   std::vector<UIObserver *> uiObservers_;
+  RefPtr<View> view() { return overlay_->view(); }
 };

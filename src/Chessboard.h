@@ -1,14 +1,16 @@
 #pragma once
 
+#include <vector>
+#include <string>
+#include <iostream>
+
 #include "ChessboardCell.h"
 #include "ChessPiece.fwd.h"
 #include "Chessboard.fwd.h"
 #include "UI.h"
-#include <vector>
-#include <string>
-#include <iostream>
-#include "Queen.h"
 #include "UIObserver.h"
+#include "Queen.h"
+#include "King.h"
 
 class Chessboard : public UIObserver
 {
@@ -24,6 +26,7 @@ public:
   void initializePieces();
 
   void onCellClicked(int x, int y) override;
+  void onUiReady() override;
 
   void highlightCells(const std::vector<std::pair<int, int>> &coordinates);
   void selectCell(int x, int y);

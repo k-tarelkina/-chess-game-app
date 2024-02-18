@@ -1,4 +1,5 @@
 const cells = [[], [], [], [], [], [], [], []];
+
 function testJsEmpty() {
   document.getElementById("test").innerText = "message";
 }
@@ -24,8 +25,14 @@ function initializeBoard() {
 function highlightCells() {}
 function clearHighlightedCells() {}
 
-function putPiece(x, y, pieceName, pieceColor) {}
-function removePiece(x, y) {}
+function putPiece(x, y, pieceName, pieceColor) {
+  cells[x][y].innerText = pieceName + " " + pieceColor;
+  document.getElementById("test").innerText = "putPiece";
+}
+
+function removePiece(x, y) {
+  cells[x][y].innerText = "";
+}
 
 function addDeadPiece(pieceName, pieceColor) {}
 

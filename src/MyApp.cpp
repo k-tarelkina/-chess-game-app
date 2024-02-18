@@ -27,8 +27,6 @@ MyApp::~MyApp()
 void MyApp::Run()
 {
   app_->Run();
-  chessboard_->initializeBoard();
-  chessboard_->initializePieces();
 }
 
 void MyApp::OnClose(ultralight::Window *window)

@@ -4,13 +4,10 @@
 #include <vector>
 #include <string>
 
-class Queen : public ChessPiece
+class King : public ChessPiece
 {
 public:
-  Queen(int x, int y, Color color, Chessboard *chessboard) : ChessPiece(x, y, color, chessboard) {}
-
-  ~Queen() override;
-
+  using ChessPiece::ChessPiece;
   std::string getName() override;
   std::vector<std::pair<int, int>> getPossiblePaths() override;
 };

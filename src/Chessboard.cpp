@@ -20,9 +20,9 @@ void Chessboard::initializeBoard()
 
 void Chessboard::initializePieces()
 {
-  // call to UI
-  new Queen(0, 1, Color::White, this);
-
+  std::cout << "initializePieces" << std::endl;
+  putPiece(0, 1, new Queen(0, 1, Color::White, this));
+  // new King(0, 2, Color::White, this);
   // Assuming King and Queen constructors take (x, y, color, chessboard)
   // King *king = new King(0, 0, COLOR::White, this);
   // Queen *queen = new Queen(0, 1, COLOR::White, this);
@@ -44,6 +44,12 @@ void Chessboard::onCellClicked(int x, int y)
     selectedCell_ = &cells_[x][y];
     // selectedCell_->select(); call to UI
   }
+}
+
+void Chessboard::onUiReady()
+{
+  initializeBoard();
+  initializePieces();
 }
 
 void Chessboard::clearCellsHighlight()
@@ -68,7 +74,7 @@ void Chessboard::clearCell(int x, int y)
 
 ChessPiece *Chessboard::putPiece(int x, int y, ChessPiece *piece)
 {
-  // call to UI
+  ui_->putPiece(x, y, piece->getName(), piece->getColor());
   return cells_[x][y].putPiece(piece);
 }
 

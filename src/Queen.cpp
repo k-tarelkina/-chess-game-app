@@ -1,5 +1,7 @@
 #include "Queen.h"
 
+Queen::~Queen() {}
+
 std::string Queen::getName()
 {
   return "Queen";

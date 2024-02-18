@@ -4,10 +4,14 @@
 ChessPiece::ChessPiece(int x, int y, Color color, Chessboard *chessboard)
     : x_(x), y_(y), color_(color), chessboard_(chessboard)
 {
-  chessboard_->putPiece(x, y, this);
 }
 
 ChessPiece::~ChessPiece() {}
+
+Color ChessPiece::getColor()
+{
+  return color_;
+}
 
 void ChessPiece::moveTo(int x, int y)
 {

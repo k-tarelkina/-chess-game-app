@@ -3,6 +3,7 @@
 #include "ChessPiece.fwd.h"
 #include "Chessboard.fwd.h"
 #include "ChessboardEnum.h"
+
 #include <string>
 #include <iostream>
 #include <vector>
@@ -21,8 +22,9 @@ public:
   virtual ~ChessPiece();
 
   void moveTo(int x, int y);
-  virtual void die();
-  virtual bool canMoveTo(int x, int y);
+  void die();
+  bool canMoveTo(int x, int y);
+  Color getColor();
 
   virtual std::string getName() = 0;
   virtual std::vector<std::pair<int, int>> getPossiblePaths() = 0;
