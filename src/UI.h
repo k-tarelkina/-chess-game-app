@@ -12,7 +12,7 @@ class UI : public WindowListener,
            public ViewListener
 {
 public:
-  UI(RefPtr<Window> window);
+  explicit UI(RefPtr<Window> window);
   ~UI();
 
   virtual void OnDOMReady(ultralight::View *caller,
@@ -26,5 +26,5 @@ public:
 protected:
   RefPtr<Window> window_;
   RefPtr<Overlay> overlay_;
-  JSFunction testJs;
+  RefPtr<View> view() { return overlay_->view(); }
 };
