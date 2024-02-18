@@ -16,7 +16,7 @@ MyApp::MyApp() : app_(App::Create())
   ui_.reset(ui);
   window_->set_listener(ui_.get());
 
-  new Chessboard(ui);
+  chessboard_ = new Chessboard(ui);
 }
 
 MyApp::~MyApp()

@@ -1,12 +1,13 @@
 #include "ChessPiece.h"
+#include "Chessboard.h" // Fixes error: invalid use of incomplete type ‘class Chessboard’
 
-ChessPiece::ChessPiece(int x, int y, const std::string &color, Chessboard *chessboard)
+ChessPiece::ChessPiece(int x, int y, Color color, Chessboard *chessboard)
     : x_(x), y_(y), color_(color), chessboard_(chessboard)
 {
   chessboard_->putPiece(x, y, this);
 }
 
-virtual ~ChessPiece::ChessPiece() {}
+ChessPiece::~ChessPiece() {}
 
 void ChessPiece::moveTo(int x, int y)
 {
@@ -16,7 +17,7 @@ void ChessPiece::moveTo(int x, int y)
     return;
   }
 
-  chessboard_->clearCell(this->x, this->y);
+  chessboard_->clearCell(x_, y_);
   x_ = x;
   y_ = y;
 
@@ -27,12 +28,12 @@ void ChessPiece::moveTo(int x, int y)
   }
 }
 
-virtual void ChessPiece::die()
+void ChessPiece::die()
 {
   chessboard_->addDeadPiece(this);
 }
 
-virtual bool ChessPiece::canMoveTo(int x, int y)
+bool ChessPiece::canMoveTo(int x, int y)
 {
   auto possiblePaths = getPossiblePaths();
   return std::any_of(

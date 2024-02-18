@@ -10,6 +10,7 @@ private:
   int y_;
 
 public:
+  ChessboardCell();
   ChessboardCell(int x, int y);
 
   ChessPiece *putPiece(ChessPiece *piece);

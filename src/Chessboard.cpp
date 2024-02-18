@@ -1,6 +1,9 @@
 #include "Chessboard.h"
 
-Chessboard::Chessboard(UI &ui) : cells_(8, std::vector<ChessboardCell>(8)), selectedCell_(0), ui_(ui)
+Chessboard::Chessboard(UI *ui) : cells_(
+                                     8,
+                                     std::vector<ChessboardCell>(0)),
+                                 selectedCell_(0), ui_(ui)
 {
 }
 
@@ -10,8 +13,8 @@ void Chessboard::initializeBoard()
   {
     for (int j = 0; j < 8; ++j)
     {
-      ChessboardCell cell(i, j, this);
-      cells[i][j] = cell;
+      ChessboardCell cell(i, j);
+      cells_[i].push_back(cell);
     }
   }
 
@@ -21,7 +24,7 @@ void Chessboard::initializeBoard()
 void Chessboard::initializePieces()
 {
   // call to UI
-  new Queen(0, 1, Color.White, this);
+  new Queen(0, 1, Color::White, this);
 
   // Assuming King and Queen constructors take (x, y, color, chessboard)
   // King *king = new King(0, 0, COLOR::White, this);
@@ -33,20 +36,20 @@ void Chessboard::initializePieces()
 
 void Chessboard::onCellClicked(int x, int y)
 {
-  if (selectedCell_ != 0 && selectedCell_->hasPiece())
+  if (selectedCell_ != nullptr && selectedCell_->hasPiece())
   {
-    Piece *piece = selectedCell->getPiece();
+    ChessPiece *piece = selectedCell_->getPiece();
     piece->moveTo(x, y);
-    clearHighlightedCells();
+    clearCellsHighlight();
   }
   else
   {
-    selectedCell_ = &cells[x][y];
-    selectedCell_->select();
+    selectedCell_ = &cells_[x][y];
+    // selectedCell_->select(); call to UI
   }
 }
 
-void Chessboard::clearHighlightedCells()
+void Chessboard::clearCellsHighlight()
 {
   // call to UI
 }
@@ -63,7 +66,7 @@ void Chessboard::highlightCells(const std::vector<std::pair<int, int>> &coordina
 
 void Chessboard::clearCell(int x, int y)
 {
-  cells[x][y].clear();
+  cells_[x][y].clear();
 }
 
 ChessPiece *Chessboard::putPiece(int x, int y, ChessPiece *piece)

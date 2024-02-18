@@ -1,8 +1,10 @@
 #pragma once
 
-#include "Chessboard.h"
+#include "ChessPiece.fwd.h"
+#include "Chessboard.fwd.h"
 #include "ChessboardEnum.h"
 #include <string>
+#include <iostream>
 #include <vector>
 #include <algorithm>
 
@@ -16,7 +18,7 @@ private:
 
 public:
   ChessPiece(int x, int y, Color color, Chessboard *chessboard);
-  virtual ~ChessPiece() {}
+  virtual ~ChessPiece();
 
   void moveTo(int x, int y);
   virtual void die();

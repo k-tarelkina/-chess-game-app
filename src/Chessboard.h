@@ -1,7 +1,9 @@
 #pragma once
 
 #include "ChessboardCell.h"
-#include "ChessPiece.h"
+#include "ChessPiece.fwd.h"
+#include "Chessboard.fwd.h"
+#include "UI.h"
 #include <vector>
 #include <string>
 #include <iostream>
@@ -11,11 +13,11 @@ class Chessboard
 {
 private:
   std::vector<std::vector<ChessboardCell>> cells_;
-  Cell &selectedCell_;
-  UI &ui_;
+  ChessboardCell *selectedCell_;
+  UI *ui_;
 
 public:
-  explicit Chessboard(UI &ui);
+  explicit Chessboard(UI *ui);
 
   void initializeBoard();
   void initializePieces();

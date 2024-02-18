@@ -7,7 +7,19 @@ set(SOURCES "src/MyApp.h"
             "src/MyApp.cpp"
             "src/UI.h"
             "src/UI.cpp"
-            "src/main.cpp")
+            "src/main.cpp"
+            "src/ChessboardCell.cpp"
+            "src/Chessboard.fwd.h"  
+            "src/ChessPiece.h" 
+            "src/Queen.cpp"
+            "src/ChessboardCell.h"    
+            "src/Chessboard.h"  
+            "src/Queen.h"
+            "src/Chessboard.cpp"      
+            "src/ChessPiece.cpp"   
+            "src/ChessboardEnum.h"    
+            "src/ChessPiece.fwd.h"  
+)
 
 add_app("${SOURCES}")
 
