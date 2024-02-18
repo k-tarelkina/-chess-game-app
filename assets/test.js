@@ -19,7 +19,7 @@ function initializeBoard() {
   }
 }
 
-function onCellClicked(x, y) {}
+// function onCellClicked(x, y) {}
 
 function highlightCells() {}
 function clearHighlightedCells() {}

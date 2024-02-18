@@ -19,6 +19,7 @@ set(SOURCES "src/MyApp.h"
             "src/ChessPiece.cpp"   
             "src/ChessboardEnum.h"    
             "src/ChessPiece.fwd.h"  
+            "src/UIObserver.h"
 )
 
 add_app("${SOURCES}")

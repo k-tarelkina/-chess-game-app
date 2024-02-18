@@ -8,8 +8,9 @@
 #include <string>
 #include <iostream>
 #include "Queen.h"
+#include "UIObserver.h"
 
-class Chessboard
+class Chessboard : public UIObserver
 {
 private:
   std::vector<std::vector<ChessboardCell>> cells_;
@@ -22,7 +23,7 @@ public:
   void initializeBoard();
   void initializePieces();
 
-  void onCellClicked(int x, int y);
+  void onCellClicked(int x, int y) override;
 
   void highlightCells(const std::vector<std::pair<int, int>> &coordinates);
   void selectCell(int x, int y);

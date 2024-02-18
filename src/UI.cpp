@@ -1,6 +1,6 @@
 #include "UI.h"
 
-UI::UI(RefPtr<Window> window) : window_(window)
+UI::UI(RefPtr<Window> window) : window_(window), uiObservers_(std::vector<UIObserver *>(0))
 {
   overlay_ = Overlay::Create(window_, 1, 1, 0, 0);
   view()->LoadURL("file:///app.html");
@@ -17,6 +17,11 @@ UI::~UI()
   view()->set_view_listener(nullptr);
 }
 
+void UI::attachObserver(UIObserver *observer)
+{
+  uiObservers_.push_back(observer);
+}
+
 void UI::OnDOMReady(ultralight::View *caller,
                     uint64_t frame_id,
                     bool is_main_frame,
@@ -29,12 +34,20 @@ void UI::OnDOMReady(ultralight::View *caller,
 
   JSObject global = JSGlobalObject();
 
-  global["OnTest"] = BindJSCallback(&UI::OnTest);
+  global["onCellClicked"] = BindJSCallback(&UI::onCellClicked);
 }
 
-void UI::OnTest(const JSObject &obj, const JSArgs &args)
+void UI::onCellClicked(const JSObject &obj, const JSArgs &args)
 {
   std::cout << "test" << std::endl;
+
+  std::cout << args[0].IsNumber() << std::endl;
+
+  for (auto observer : uiObservers_)
+  {
+    observer->onCellClicked(args[0], args[1]);
+  }
+
   view()->EvaluateScript("testJs('Howdy!')");
 }
 
