@@ -26,8 +26,8 @@ function highlightCells() {}
 function clearHighlightedCells() {}
 
 function putPiece(x, y, pieceName, pieceColor) {
-  cells[x][y].innerText = pieceName + " " + pieceColor;
-  document.getElementById("test").innerText = "putPiece";
+  cells[x][y].innerHTML =
+    "<img class='piece-image' " + `src='${pieceName}_${pieceColor}.svg'>`;
 }
 
 function removePiece(x, y) {
@@ -35,8 +35,6 @@ function removePiece(x, y) {
 }
 
 function addDeadPiece(pieceName, pieceColor) {}
-
-document.getElementById("test").addEventListener("click", () => OnTest());
 
 for (let x = 7; x >= 0; x--) {
   for (let y = 0; y < 8; y++) {

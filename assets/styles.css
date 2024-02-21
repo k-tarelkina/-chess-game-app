@@ -7,13 +7,15 @@ body {
   padding: 0;
 }
 
-h1 {
-  color: blueviolet;
-}
-
 * {
   box-sizing: border-box;
-  font-family: "Montserrat", sans-serif;
+  font-family: "Namdhinggo", serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+h1 {
+  text-align: center;
 }
 
 .wrapper {
@@ -23,12 +25,16 @@ h1 {
   max-width: 1200px;
 }
 
+.piece-image {
+  width: 100%;
+  height: 100%;
+}
+
 .input-image {
   width: 100px;
   height: 100px;
 }
 
-input[type="file"]::file-selector-button,
 .button {
   height: 40px;
   padding: 10px;
@@ -52,11 +58,15 @@ input[type="file"]::file-selector-button:hover,
 .main {
   display: flex;
   flex-direction: column;
+  align-items: center;
 }
 
 .chess-board {
-  width: 800px;
+  width: 830px;
   display: grid;
+  border-width: 15px;
+  border-style: double;
+  border-color: #384d48;
   grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
   grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
 }
@@ -65,30 +75,30 @@ input[type="file"]::file-selector-button:hover,
   height: 100px;
   width: 100px;
   background-color: white;
-  color: black;
+  color: #acad94;
 }
 
 .black {
   height: 100px;
   width: 100px;
-  background-color: black;
+  background-color: #acad94;
   color: white;
 }
 
 .selected {
   border-width: 5px;
-  border-color: cadetblue;
+  border-color: #6e7271;
   border-style: solid;
 }
 
 .highlighted-free {
   border-width: 5px;
-  border-color: lightskyblue;
+  border-color: #e2e2e2;
   border-style: solid;
 }
 
 .highlighted-occupied {
   border-width: 5px;
-  border-color: red;
+  border-color: #d8d4d5;
   border-style: solid;
 }
