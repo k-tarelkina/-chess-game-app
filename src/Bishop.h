@@ -12,4 +12,7 @@ public:
 
   std::string getName() override;
   std::vector<std::pair<int, int>> getPossiblePaths() override;
+
+private:
+  std::vector<std::pair<int, int>> prunePath(std::vector<std::pair<int, int>> path);
 };

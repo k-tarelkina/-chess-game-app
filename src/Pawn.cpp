@@ -1,13 +1,13 @@
-#include "Bishop.h"
+#include "Pawn.h"
 
-Bishop::~Bishop() {}
+Pawn::~Pawn() {}
 
-std::string Bishop::getName()
+std::string Pawn::getName()
 {
-  return "Bishop";
+  return "Pawn";
 }
 
-std::vector<std::pair<int, int>> Bishop::getPossiblePaths()
+std::vector<std::pair<int, int>> Pawn::getPossiblePaths()
 {
   return std::vector<std::pair<int, int>>{{1, 1}, {5, 4}};
 }

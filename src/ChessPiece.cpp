@@ -46,3 +46,21 @@ bool ChessPiece::canMoveTo(int x, int y)
       [x, y](const std::pair<int, int> &c)
       { return c.first == x && c.second == y; });
 }
+
+bool ChessPiece::isPieceOfSameColor(int x, int y)
+{
+  ChessPiece *piece = chessboard_->getPiece(x, y);
+  if (piece == nullptr)
+    return false;
+
+  return piece->getColor() == color_;
+}
+
+bool ChessPiece::isPieceOfOppositeColor(int x, int y)
+{
+  ChessPiece *piece = chessboard_->getPiece(x, y);
+  if (piece == nullptr)
+    return false;
+
+  return piece->getColor() != color_;
+}

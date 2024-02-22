@@ -11,12 +11,6 @@
 
 class ChessPiece
 {
-private:
-  int x_;
-  int y_;
-  Color color_;
-  Chessboard *chessboard_;
-
 public:
   ChessPiece(int x, int y, Color color, Chessboard *chessboard);
   virtual ~ChessPiece();
@@ -28,4 +22,13 @@ public:
 
   virtual std::string getName() = 0;
   virtual std::vector<std::pair<int, int>> getPossiblePaths() = 0;
+
+protected:
+  int x_;
+  int y_;
+  Color color_;
+  Chessboard *chessboard_;
+
+  bool isPieceOfSameColor(int x, int y);
+  bool isPieceOfOppositeColor(int x, int y);
 };
