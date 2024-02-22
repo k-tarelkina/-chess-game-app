@@ -7,7 +7,7 @@ std::string Pawn::getName()
   return "Pawn";
 }
 
-std::vector<std::pair<int, int>> Pawn::getPossiblePaths()
+std::vector<Coordinates> Pawn::getPossiblePaths()
 {
-  return std::vector<std::pair<int, int>>{{1, 1}, {5, 4}};
+  return std::vector<Coordinates>{{1, 1}, {5, 4}};
 }

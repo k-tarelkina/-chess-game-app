@@ -86,7 +86,7 @@ void UI::highlightSelectedCell(int x, int y)
   view()->EvaluateScript(command.c_str());
 }
 
-void UI::highlightCells(const std::vector<std::pair<int, int>> &coordinates)
+void UI::highlightCells(const std::vector<Coordinates> &coordinates)
 {
   std::string command = "highlightCells([";
 

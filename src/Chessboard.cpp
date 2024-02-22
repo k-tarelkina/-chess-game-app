@@ -105,7 +105,7 @@ void Chessboard::highlightSelectedCell(int x, int y)
   ui_->highlightSelectedCell(x, y);
 }
 
-void Chessboard::highlightCells(const std::vector<std::pair<int, int>> &coordinates)
+void Chessboard::highlightCells(const std::vector<Coordinates> &coordinates)
 {
   ui_->highlightCells(coordinates);
 }

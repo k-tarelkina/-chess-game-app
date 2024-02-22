@@ -7,7 +7,7 @@ std::string Knight::getName()
   return "Knight";
 }
 
-std::vector<std::pair<int, int>> Knight::getPossiblePaths()
+std::vector<Coordinates> Knight::getPossiblePaths()
 {
-  return std::vector<std::pair<int, int>>{{1, 1}, {5, 4}};
+  return std::vector<Coordinates>{{1, 1}, {5, 4}};
 }

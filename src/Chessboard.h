@@ -27,7 +27,7 @@ public:
   void onCellClicked(int x, int y) override;
   void onUiReady() override;
   // TODO move to private methods
-  void highlightCells(const std::vector<std::pair<int, int>> &coordinates);
+  void highlightCells(const std::vector<Coordinates> &coordinates);
   void highlightSelectedCell(int x, int y);
   void clearCellsHighlight();
 

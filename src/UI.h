@@ -9,6 +9,7 @@
 
 #include "UIObserver.h"
 #include "ChessboardEnum.h"
+#include "ChessCustomTypes.h"
 
 using ultralight::JSFunction;
 using namespace ultralight;
@@ -35,7 +36,7 @@ public:
   void removePiece(int x, int y);
   void clearCellsHighlight();
   void highlightSelectedCell(int x, int y);
-  void highlightCells(const std::vector<std::pair<int, int>> &coordinates);
+  void highlightCells(const std::vector<Coordinates> &coordinates);
 
 protected:
   RefPtr<Window> window_;

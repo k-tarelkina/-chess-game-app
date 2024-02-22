@@ -11,5 +11,8 @@ public:
   ~Rook() override;
 
   std::string getName() override;
-  std::vector<std::pair<int, int>> getPossiblePaths() override;
+  std::vector<Coordinates> getPossiblePaths() override;
+
+private:
+  std::vector<Coordinates> prunePath(std::vector<Coordinates> path);
 };

@@ -12,5 +12,5 @@ public:
 
   using ChessPiece::ChessPiece;
   std::string getName() override;
-  std::vector<std::pair<int, int>> getPossiblePaths() override;
+  std::vector<Coordinates> getPossiblePaths() override;
 };

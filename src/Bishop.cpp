@@ -7,36 +7,33 @@ std::string Bishop::getName()
   return "Bishop";
 }
 
-std::vector<std::pair<int, int>> Bishop::getPossiblePaths()
+std::vector<Coordinates> Bishop::getPossiblePaths()
 {
-  std::vector<std::pair<int, int>> paths;
+  std::vector<Coordinates> paths;
+  auto directions = getDirections();
 
-  for (int i = 0; i < 8; i++)
+  for (auto direction : directions)
   {
-    std::vector<std::pair<int, int>> pairs = {
-        {x_ + i, y_ + i},
-        {x_ - i, y_ + i},
-        {x_ + i, y_ - i},
-        {x_ - i, y_ - i}};
+    std::vector<Coordinates> currentPath;
 
-    for (auto p : pairs)
-    {
-      int newX = p.first;
-      int newY = p.second;
+    for (int i = 0; i < 8; i++)
+      currentPath.push_back(direction(x_, y_, i));
 
-      if (newX < 8 && newY < 8 && newX >= 0 && newY >= 0)
-        paths.push_back(p);
-    }
+    currentPath = prunePath(currentPath);
+    paths.insert(paths.end(), currentPath.begin(), currentPath.end());
   }
 
-  return prunePath(paths);
+  return paths;
 }
 
-std::vector<std::pair<int, int>> Bishop::prunePath(std::vector<std::pair<int, int>> path)
+std::vector<Coordinates> Bishop::prunePath(std::vector<Coordinates> path)
 {
-  std::vector<std::pair<int, int>> prunedPath;
+  std::vector<Coordinates> prunedPath;
   for (auto p : path)
   {
+    if (p.first >= 8 || p.second >= 8 || p.first < 0 || p.second < 0)
+      break;
+
     if (isPieceOfSameColor(p.first, p.second))
       break;
 
@@ -46,4 +43,19 @@ std::vector<std::pair<int, int>> Bishop::prunePath(std::vector<std::pair<int, in
       break;
   }
   return prunedPath;
+}
+
+std::vector<std::function<Coordinates(int, int, int)>> Bishop::getDirections()
+{
+  std::vector<std::function<Coordinates(int, int, int)>> directions;
+
+  directions.push_back([](int x, int y, int i)
+                       { return std::make_pair(x + i, y + i); });
+  directions.push_back([](int x, int y, int i)
+                       { return std::make_pair(x + i, y - i); });
+  directions.push_back([](int x, int y, int i)
+                       { return std::make_pair(x - i, y + i); });
+  directions.push_back([](int x, int y, int i)
+                       { return std::make_pair(x - i, y - i); });
+  return directions;
 }

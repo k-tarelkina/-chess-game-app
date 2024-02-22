@@ -43,7 +43,7 @@ bool ChessPiece::canMoveTo(int x, int y)
   return std::any_of(
       possiblePaths.begin(),
       possiblePaths.end(),
-      [x, y](const std::pair<int, int> &c)
+      [x, y](const Coordinates &c)
       { return c.first == x && c.second == y; });
 }
 

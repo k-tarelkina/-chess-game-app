@@ -3,6 +3,7 @@
 #include "ChessPiece.fwd.h"
 #include "Chessboard.fwd.h"
 #include "ChessboardEnum.h"
+#include "ChessCustomTypes.h"
 
 #include <string>
 #include <iostream>
@@ -21,7 +22,7 @@ public:
   Color getColor();
 
   virtual std::string getName() = 0;
-  virtual std::vector<std::pair<int, int>> getPossiblePaths() = 0;
+  virtual std::vector<Coordinates> getPossiblePaths() = 0;
 
 protected:
   int x_;
