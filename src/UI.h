@@ -32,6 +32,7 @@ public:
   void attachObserver(UIObserver *observer);
 
   void putPiece(int x, int y, const std::string &pieceName, Color color);
+  void removePiece(int x, int y);
   void clearCellsHighlight();
   void highlightSelectedCell(int x, int y);
   void highlightCells(const std::vector<std::pair<int, int>> &coordinates);

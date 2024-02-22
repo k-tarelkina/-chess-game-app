@@ -65,8 +65,18 @@ void UI::putPiece(int x, int y, const std::string &pieceName, Color color)
   view()->EvaluateScript(command.c_str());
 }
 
+void UI::removePiece(int x, int y)
+{
+  std::string command = "removePiece(" +
+                        std::to_string(x) + ", " +
+                        std::to_string(y) + ")";
+  view()->EvaluateScript(command.c_str());
+}
+
 void UI::clearCellsHighlight()
 {
+  std::string command = "clearCellsHighlight()";
+  view()->EvaluateScript(command.c_str());
 }
 
 void UI::highlightSelectedCell(int x, int y)

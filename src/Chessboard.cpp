@@ -64,7 +64,7 @@ void Chessboard::onUiReady()
 
 void Chessboard::clearCellsHighlight()
 {
-  // call to UI
+  ui_->clearCellsHighlight();
 }
 
 void Chessboard::highlightSelectedCell(int x, int y)
@@ -80,6 +80,7 @@ void Chessboard::highlightCells(const std::vector<std::pair<int, int>> &coordina
 void Chessboard::clearCell(int x, int y)
 {
   cells_[x][y].clear();
+  ui_->removePiece(x, y);
 }
 
 ChessPiece *Chessboard::putPiece(int x, int y, ChessPiece *piece)

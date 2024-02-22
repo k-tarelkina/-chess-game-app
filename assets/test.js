@@ -31,7 +31,15 @@ function highlightCells(coordinates) {
     cells[c[0]][c[1]].classList.add("highlighted-free"); // TODO change highlight depending on wether there is a piece
   }
 }
-function clearHighlightedCells() {}
+
+function clearCellsHighlight() {
+  for (let row of cells) {
+    for (let element of row) {
+      element.classList.remove("highlighted-free");
+      element.classList.remove("selected");
+    }
+  }
+}
 
 function putPiece(x, y, pieceName, pieceColor) {
   cells[x][y].innerHTML =
@@ -39,7 +47,7 @@ function putPiece(x, y, pieceName, pieceColor) {
 }
 
 function removePiece(x, y) {
-  cells[x][y].innerText = "";
+  cells[x][y].innerHTML = "";
 }
 
 function addDeadPiece(pieceName, pieceColor) {}
