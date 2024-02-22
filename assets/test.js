@@ -1,4 +1,14 @@
 const cells = [[], [], [], [], [], [], [], []];
+const COLOR = {
+  Black: "Black",
+  White: "White",
+};
+
+const STATE = {
+  Selected: "selected",
+  HighlightedFree: "highlighted-free",
+  HighlightedOccupied: "highlighted-occupied",
+};
 
 function testJsEmpty() {
   document.getElementById("test").innerText = "message";
