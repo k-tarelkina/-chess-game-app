@@ -22,7 +22,18 @@ function initializeBoard() {
 
 // function onCellClicked(x, y) {}
 
-function highlightCells() {}
+function highlightCells(coordinates) {
+  document.getElementById("test").innerText = "highlightCells";
+
+  for (let c of coordinates) {
+    document.getElementById("test").innerText =
+      document.getElementById("test").innerText + c[0] + c[1];
+
+    cells[c[0]][c[1]].classList.add("highlighted-free");
+    document.getElementById("test").innerText =
+      document.getElementById("test").innerText + cells[c[0]][c[1]].classList;
+  }
+}
 function clearHighlightedCells() {}
 
 function putPiece(x, y, pieceName, pieceColor) {

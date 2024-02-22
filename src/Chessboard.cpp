@@ -3,7 +3,7 @@
 Chessboard::Chessboard(UI *ui) : cells_(8, std::vector<ChessboardCell>(0)),
                                  selectedCell_(0), ui_(ui)
 {
-  ui->attachObserver(this);
+  ui_->attachObserver(this);
 }
 
 void Chessboard::initializeBoard()
@@ -33,6 +33,7 @@ void Chessboard::initializePieces()
 
 void Chessboard::onCellClicked(int x, int y)
 {
+  std::cout << "onCellClicked" << std::endl;
   if (selectedCell_ != nullptr && selectedCell_->hasPiece())
   {
     ChessPiece *piece = selectedCell_->getPiece();
@@ -42,7 +43,13 @@ void Chessboard::onCellClicked(int x, int y)
   else
   {
     selectedCell_ = &cells_[x][y];
-    // selectedCell_->select(); call to UI
+    ChessPiece *piece = selectedCell_->getPiece();
+    if (piece != nullptr)
+    {
+      selectCell(x, y);
+      auto possiblePaths = piece->getPossiblePaths();
+      highlightCells(possiblePaths);
+    }
   }
 }
 
@@ -64,7 +71,7 @@ void Chessboard::selectCell(int x, int y)
 
 void Chessboard::highlightCells(const std::vector<std::pair<int, int>> &coordinates)
 {
-  // call to UI
+  ui_->highlightCells(coordinates);
 }
 
 void Chessboard::clearCell(int x, int y)
