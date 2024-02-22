@@ -14,6 +14,7 @@
 #include "Pawn.h"
 #include "Bishop.h"
 #include "Knight.h"
+#include "Rook.h"
 
 class Chessboard : public UIObserver
 {
