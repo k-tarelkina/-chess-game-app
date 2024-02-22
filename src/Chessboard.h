@@ -14,11 +14,6 @@
 
 class Chessboard : public UIObserver
 {
-private:
-  std::vector<std::vector<ChessboardCell>> cells_;
-  ChessboardCell *selectedCell_;
-  UI *ui_;
-
 public:
   explicit Chessboard(UI *ui);
 
@@ -27,9 +22,9 @@ public:
 
   void onCellClicked(int x, int y) override;
   void onUiReady() override;
-
+  // TODO move to private methods
   void highlightCells(const std::vector<std::pair<int, int>> &coordinates);
-  void selectCell(int x, int y);
+  void highlightSelectedCell(int x, int y);
   void clearCellsHighlight();
 
   void clearCell(int x, int y);
@@ -38,4 +33,11 @@ public:
   ChessPiece *getPiece(int x, int y);
 
   void addDeadPiece(ChessPiece *piece);
+
+private:
+  std::vector<std::vector<ChessboardCell>> cells_;
+  ChessboardCell *selectedCell_;
+  UI *ui_;
+
+  bool shouldMoveCell();
 };

@@ -20,18 +20,15 @@ function initializeBoard() {
   }
 }
 
-// function onCellClicked(x, y) {}
+function highlightSelectedCell(x, y) {
+  cells[x][y].classList.add("selected");
+}
 
 function highlightCells(coordinates) {
   document.getElementById("test").innerText = "highlightCells";
 
   for (let c of coordinates) {
-    document.getElementById("test").innerText =
-      document.getElementById("test").innerText + c[0] + c[1];
-
-    cells[c[0]][c[1]].classList.add("highlighted-free");
-    document.getElementById("test").innerText =
-      document.getElementById("test").innerText + cells[c[0]][c[1]].classList;
+    cells[c[0]][c[1]].classList.add("highlighted-free"); // TODO change highlight depending on wether there is a piece
   }
 }
 function clearHighlightedCells() {}

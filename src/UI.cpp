@@ -51,12 +51,8 @@ void UI::onCellClicked(const JSObject &obj, const JSArgs &args)
 {
   for (auto observer : uiObservers_)
   {
-    std::cout << "observer" << std::endl;
-
     observer->onCellClicked(args[0], args[1]);
   }
-
-  // view()->EvaluateScript("testJs('Howdy!')");
 }
 
 void UI::putPiece(int x, int y, const std::string &pieceName, Color color)
@@ -73,13 +69,15 @@ void UI::clearCellsHighlight()
 {
 }
 
-void UI::selectCell(int x, int y)
+void UI::highlightSelectedCell(int x, int y)
 {
+  std::string command = "highlightSelectedCell(" + std::to_string(x) + "," +
+                        std::to_string(y) + ")";
+  view()->EvaluateScript(command.c_str());
 }
 
 void UI::highlightCells(const std::vector<std::pair<int, int>> &coordinates)
 {
-  std::cout << "highlightCells!";
   std::string command = "highlightCells([";
 
   for (int i = 0; i < coordinates.size(); i++)
@@ -87,9 +85,7 @@ void UI::highlightCells(const std::vector<std::pair<int, int>> &coordinates)
     auto c = coordinates[i];
     command = command + "[" + std::to_string(c.first) + "," + std::to_string(c.second) + "]";
     if (i < coordinates.size() - 1)
-    {
       command = command + ",";
-    }
   }
 
   command = command + "])";

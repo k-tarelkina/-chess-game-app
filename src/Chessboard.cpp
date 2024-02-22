@@ -20,7 +20,6 @@ void Chessboard::initializeBoard()
 
 void Chessboard::initializePieces()
 {
-  std::cout << "initializePieces" << std::endl;
   putPiece(0, 1, new Queen(0, 1, Color::White, this));
   // new King(0, 2, Color::White, this);
   // Assuming King and Queen constructors take (x, y, color, chessboard)
@@ -33,23 +32,27 @@ void Chessboard::initializePieces()
 
 void Chessboard::onCellClicked(int x, int y)
 {
-  std::cout << "onCellClicked" << std::endl;
-  if (selectedCell_ != nullptr && selectedCell_->hasPiece())
+  bool moveToThisCell = selectedCell_ != nullptr && selectedCell_->hasPiece();
+  if (moveToThisCell)
   {
     ChessPiece *piece = selectedCell_->getPiece();
     piece->moveTo(x, y);
     clearCellsHighlight();
+    return;
+  }
+
+  selectedCell_ = &cells_[x][y];
+  ChessPiece *piece = selectedCell_->getPiece();
+
+  if (piece == nullptr)
+  {
+    selectedCell_ = nullptr; // Cannot select empty cells
   }
   else
   {
-    selectedCell_ = &cells_[x][y];
-    ChessPiece *piece = selectedCell_->getPiece();
-    if (piece != nullptr)
-    {
-      selectCell(x, y);
-      auto possiblePaths = piece->getPossiblePaths();
-      highlightCells(possiblePaths);
-    }
+    highlightSelectedCell(x, y);
+    auto possiblePaths = piece->getPossiblePaths();
+    highlightCells(possiblePaths);
   }
 }
 
@@ -64,9 +67,9 @@ void Chessboard::clearCellsHighlight()
   // call to UI
 }
 
-void Chessboard::selectCell(int x, int y)
+void Chessboard::highlightSelectedCell(int x, int y)
 {
-  // call to UI
+  ui_->highlightSelectedCell(x, y);
 }
 
 void Chessboard::highlightCells(const std::vector<std::pair<int, int>> &coordinates)

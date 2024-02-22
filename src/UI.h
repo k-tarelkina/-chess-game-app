@@ -33,7 +33,7 @@ public:
 
   void putPiece(int x, int y, const std::string &pieceName, Color color);
   void clearCellsHighlight();
-  void selectCell(int x, int y);
+  void highlightSelectedCell(int x, int y);
   void highlightCells(const std::vector<std::pair<int, int>> &coordinates);
 
 protected:
