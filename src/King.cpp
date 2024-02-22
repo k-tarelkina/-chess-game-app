@@ -1,5 +1,7 @@
 #include "King.h"
 
+King::~King() {}
+
 std::string King::getName()
 {
   return "King";

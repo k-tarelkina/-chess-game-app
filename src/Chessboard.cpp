@@ -20,7 +20,11 @@ void Chessboard::initializeBoard()
 
 void Chessboard::initializePieces()
 {
-  putPiece(0, 1, new Queen(0, 1, Color::White, this));
+  putPiece(0, 3, new Queen(0, 3, Color::White, this));
+  putPiece(0, 4, new King(0, 4, Color::White, this));
+
+  putPiece(7, 3, new Queen(7, 3, Color::Black, this));
+  putPiece(7, 4, new King(7, 4, Color::Black, this));
   // new King(0, 2, Color::White, this);
   // Assuming King and Queen constructors take (x, y, color, chessboard)
   // King *king = new King(0, 0, COLOR::White, this);

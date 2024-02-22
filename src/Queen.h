@@ -8,7 +8,6 @@ class Queen : public ChessPiece
 {
 public:
   Queen(int x, int y, Color color, Chessboard *chessboard) : ChessPiece(x, y, color, chessboard) {}
-
   ~Queen() override;
 
   std::string getName() override;
