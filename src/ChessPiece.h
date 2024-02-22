@@ -27,9 +27,11 @@ public:
 protected:
   int x_;
   int y_;
+  bool hasMoved_;
   Color color_;
   Chessboard *chessboard_;
 
   bool isPieceOfSameColor(int x, int y);
   bool isPieceOfOppositeColor(int x, int y);
+  bool hasPiece(int x, int y);
 };

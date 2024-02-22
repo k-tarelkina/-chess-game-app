@@ -2,7 +2,7 @@
 #include "Chessboard.h" // Fixes error: invalid use of incomplete type ‘class Chessboard’
 
 ChessPiece::ChessPiece(int x, int y, Color color, Chessboard *chessboard)
-    : x_(x), y_(y), color_(color), chessboard_(chessboard)
+    : x_(x), y_(y), color_(color), chessboard_(chessboard), hasMoved_(false)
 {
 }
 
@@ -30,6 +30,8 @@ void ChessPiece::moveTo(int x, int y)
   {
     prevPiece->die();
   }
+
+  hasMoved_ = true;
 }
 
 void ChessPiece::die()
@@ -63,4 +65,9 @@ bool ChessPiece::isPieceOfOppositeColor(int x, int y)
     return false;
 
   return piece->getColor() != color_;
+}
+
+bool ChessPiece::hasPiece(int x, int y)
+{
+  return chessboard_->hasPiece(x, y);
 }

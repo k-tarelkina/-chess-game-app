@@ -35,6 +35,7 @@ public:
 
   ChessPiece *putPiece(int x, int y, ChessPiece *piece);
   ChessPiece *getPiece(int x, int y);
+  bool hasPiece(int x, int y);
 
   void addDeadPiece(ChessPiece *piece);
 
@@ -42,6 +43,4 @@ private:
   std::vector<std::vector<ChessboardCell>> cells_;
   ChessboardCell *selectedCell_;
   UI *ui_;
-
-  bool shouldMoveCell();
 };

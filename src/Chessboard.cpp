@@ -71,6 +71,7 @@ void Chessboard::onCellClicked(int x, int y)
     ChessPiece *piece = selectedCell_->getPiece();
     piece->moveTo(x, y);
     clearCellsHighlight();
+    selectedCell_ = nullptr;
     return;
   }
 
@@ -125,6 +126,11 @@ ChessPiece *Chessboard::putPiece(int x, int y, ChessPiece *piece)
 ChessPiece *Chessboard::getPiece(int x, int y)
 {
   return cells_[x][y].getPiece();
+}
+
+bool Chessboard::hasPiece(int x, int y)
+{
+  return cells_[x][y].hasPiece();
 }
 
 void Chessboard::addDeadPiece(ChessPiece *piece)
