@@ -20,18 +20,35 @@ void Chessboard::initializeBoard()
 
 void Chessboard::initializePieces()
 {
+  // White pieces
+
+  putPiece(1, 0, new Pawn(1, 0, Color::White, this));
+  putPiece(1, 1, new Pawn(1, 1, Color::White, this));
+  putPiece(1, 2, new Pawn(1, 2, Color::White, this));
+  putPiece(1, 3, new Pawn(1, 3, Color::White, this));
+
+  putPiece(1, 4, new Pawn(1, 4, Color::White, this));
+  putPiece(1, 5, new Pawn(1, 5, Color::White, this));
+  putPiece(1, 6, new Pawn(1, 6, Color::White, this));
+  putPiece(1, 7, new Pawn(1, 7, Color::White, this));
+
   putPiece(0, 3, new Queen(0, 3, Color::White, this));
   putPiece(0, 4, new King(0, 4, Color::White, this));
 
+  // Black pieces
+
+  putPiece(6, 0, new Pawn(6, 0, Color::Black, this));
+  putPiece(6, 1, new Pawn(6, 1, Color::Black, this));
+  putPiece(6, 2, new Pawn(6, 2, Color::Black, this));
+  putPiece(6, 3, new Pawn(6, 3, Color::Black, this));
+
+  putPiece(6, 4, new Pawn(6, 4, Color::Black, this));
+  putPiece(6, 5, new Pawn(6, 5, Color::Black, this));
+  putPiece(6, 6, new Pawn(6, 6, Color::Black, this));
+  putPiece(6, 7, new Pawn(6, 7, Color::Black, this));
+
   putPiece(7, 3, new Queen(7, 3, Color::Black, this));
   putPiece(7, 4, new King(7, 4, Color::Black, this));
-  // new King(0, 2, Color::White, this);
-  // Assuming King and Queen constructors take (x, y, color, chessboard)
-  // King *king = new King(0, 0, COLOR::White, this);
-  // Queen *queen = new Queen(0, 1, COLOR::White, this);
-  // Queen *queen2 = new Queen(0, 2, COLOR::Black, this);
-  // Log the cells to the console (if needed)
-  // This part of the code would be platform-specific and is not included here
 }
 
 void Chessboard::onCellClicked(int x, int y)
