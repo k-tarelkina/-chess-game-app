@@ -32,8 +32,10 @@ void Chessboard::initializePieces()
   putPiece(1, 6, new Pawn(1, 6, Color::White, this));
   putPiece(1, 7, new Pawn(1, 7, Color::White, this));
 
+  putPiece(0, 2, new Bishop(0, 2, Color::White, this));
   putPiece(0, 3, new Queen(0, 3, Color::White, this));
   putPiece(0, 4, new King(0, 4, Color::White, this));
+  putPiece(0, 5, new Bishop(0, 5, Color::White, this));
 
   // Black pieces
 
@@ -47,8 +49,10 @@ void Chessboard::initializePieces()
   putPiece(6, 6, new Pawn(6, 6, Color::Black, this));
   putPiece(6, 7, new Pawn(6, 7, Color::Black, this));
 
+  putPiece(7, 2, new Bishop(7, 2, Color::Black, this));
   putPiece(7, 3, new Queen(7, 3, Color::Black, this));
   putPiece(7, 4, new King(7, 4, Color::Black, this));
+  putPiece(7, 5, new Bishop(7, 5, Color::Black, this));
 }
 
 void Chessboard::onCellClicked(int x, int y)

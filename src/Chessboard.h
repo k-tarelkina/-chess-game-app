@@ -12,6 +12,7 @@
 #include "Queen.h"
 #include "King.h"
 #include "Pawn.h"
+#include "Bishop.h"
 
 class Chessboard : public UIObserver
 {

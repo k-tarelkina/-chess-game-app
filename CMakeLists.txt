@@ -25,6 +25,8 @@ set(SOURCES "src/MyApp.h"
             "src/King.cpp"
             "src/Pawn.h"
             "src/Pawn.cpp"
+            "src/Bishop.h"
+            "src/Bishop.cpp"
 )
 
 add_app("${SOURCES}")
