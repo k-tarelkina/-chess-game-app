@@ -30,8 +30,6 @@ function highlightSelectedCell(x, y) {
 }
 
 function highlightCells(coordinates) {
-  document.getElementById("test").innerText = "highlightCells";
-
   for (let c of coordinates) {
     cells[c[0]][c[1]].classList.add("highlighted-free"); // TODO change highlight depending on wether there is a piece
   }
