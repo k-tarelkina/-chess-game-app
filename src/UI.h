@@ -35,6 +35,7 @@ public:
   void putPiece(int x, int y, const std::string &pieceName, Color color);
   void removePiece(int x, int y);
   void clearCellsHighlight();
+  void addDeadPiece(const std::string &pieceName, Color color);
   void highlightSelectedCell(int x, int y);
   void highlightCells(const std::vector<Coordinates> &coordinates);
 

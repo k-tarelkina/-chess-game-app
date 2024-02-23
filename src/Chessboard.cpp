@@ -135,5 +135,5 @@ bool Chessboard::hasPiece(int x, int y)
 
 void Chessboard::addDeadPiece(ChessPiece *piece)
 {
-  // call to UI
+  ui_->addDeadPiece(piece->getName(), piece->getColor());
 }

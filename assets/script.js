@@ -1,4 +1,5 @@
 const cells = [[], [], [], [], [], [], [], []];
+
 const COLOR = {
   Black: "Black",
   White: "White",
@@ -60,7 +61,18 @@ function removePiece(x, y) {
   cells[x][y].innerHTML = "";
 }
 
-function addDeadPiece(pieceName, pieceColor) {}
+function addDeadPiece(pieceName, pieceColor) {
+  const element = document.createElement("img");
+  element.src = `${pieceName}_${pieceColor}.svg`;
+  element.classList.add("dead-piece-image");
+  document.getElementById("test").innerText = `${pieceName}_${pieceColor}.svg`;
+
+  if (pieceColor == COLOR.White) {
+    document.getElementById("whitePiecesContainer").append(element);
+  } else {
+    document.getElementById("blackPiecesContainer").append(element);
+  }
+}
 
 for (let x = 7; x >= 0; x--) {
   for (let y = 0; y < 8; y++) {

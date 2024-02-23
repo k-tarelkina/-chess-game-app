@@ -65,6 +65,13 @@ void UI::putPiece(int x, int y, const std::string &pieceName, Color color)
   view()->EvaluateScript(command.c_str());
 }
 
+void UI::addDeadPiece(const std::string &pieceName, Color color)
+{
+  std::string command = "addDeadPiece(\"" + pieceName + "\", \"" +
+                        colorToString(color) + "\")";
+  view()->EvaluateScript(command.c_str());
+}
+
 void UI::removePiece(int x, int y)
 {
   std::string command = "removePiece(" +
