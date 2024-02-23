@@ -11,12 +11,6 @@ const STATE = {
   HighlightedOccupied: "highlighted-occupied",
 };
 
-function testJsEmpty() {
-  document.getElementById("test").innerText = "message";
-}
-function testJs(message) {
-  document.getElementById("test").innerText = message;
-}
 function initializeBoard() {
   const chessboard = document.getElementById("chessboard");
 
