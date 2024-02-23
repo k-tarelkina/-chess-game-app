@@ -1,8 +1,10 @@
-# ultralight-quick-start
+# Chess Game App
 
-__Clone this repo to try a simple Ultralight app!__
+Initial repo:
 
-This is a minimal Ultralight app you can use with the [Writing Your First App](https://docs.ultralig.ht/docs/writing-your-first-app) article in the Ultralight documentation.
+```
+git clone https://github.com/ultralight-ux/ultralight-quick-start
+```
 
 ## 1. Install the Prerequisites
 
@@ -10,13 +12,10 @@ Before you build and run, you'll need to [install the prerequisites](https://doc
 
 ## 2. Clone and build the app
 
-To clone the repo and build, run the following:
+To build and run the app, run the script:
 
 ```shell
-git clone https://github.com/ultralight-ux/ultralight-quick-start
-cd ultralight-quick-start
-cmake -B build
-cmake --build build --config Release
+./start.sh
 ```
 
 ## 3. Run the app
