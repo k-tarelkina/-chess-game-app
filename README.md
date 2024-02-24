@@ -140,4 +140,5 @@ Follow the [Writing Your First App](https://docs.ultralig.ht/docs/writing-your-f
 - Add possibility to start game over (add button on UI + corresponding functionality)
 - Add timer (reset on each turn)
 - Add possibility to enter user names at the beginning of each game
+- Add possibility to save current game and return to it later
 - Add web server to connect to the same game from different computers
