@@ -7,7 +7,7 @@ std::string Queen::getName()
   return "Queen";
 }
 
-std::vector<Coordinates> Queen::getPossiblePaths()
+std::vector<Coordinates> Queen::getAllPaths()
 {
   std::vector<Coordinates> paths;
   auto directions = getDirections();
@@ -36,7 +36,7 @@ std::vector<Coordinates> Queen::prunePath(std::vector<Coordinates> path)
       break;
     }
 
-    if (isPieceOfSameColor(p.first, p.second) || isKingOfOppositeColor(p.first, p.second))
+    if (isPieceOfSameColor(p.first, p.second))
     {
       break;
     }

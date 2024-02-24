@@ -7,7 +7,7 @@ std::string Rook::getName()
   return "Rook";
 }
 
-std::vector<Coordinates> Rook::getPossiblePaths()
+std::vector<Coordinates> Rook::getAllPaths()
 {
   std::vector<Coordinates> paths;
   auto directions = getDirections();
@@ -36,7 +36,7 @@ std::vector<Coordinates> Rook::prunePath(std::vector<Coordinates> path)
       break;
     }
 
-    if (isPieceOfSameColor(p.first, p.second) || isKingOfOppositeColor(p.first, p.second))
+    if (isPieceOfSameColor(p.first, p.second))
     {
       break;
     }

@@ -41,6 +41,9 @@ public:
 
 private:
   std::vector<std::vector<ChessboardCell>> cells_;
+  std::vector<ChessPiece *> pieces_;
   ChessboardCell *selectedCell_;
   UI *ui_;
+
+  void addNewPiece(int x, int y, ChessPiece *piece);
 };

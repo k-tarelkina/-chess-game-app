@@ -21,46 +21,35 @@ void Chessboard::initializeBoard()
 void Chessboard::initializePieces()
 {
   // White pieces
+  for (int i = 0; i < 8; i++)
+  {
+    addNewPiece(1, i, new Pawn(1, i, Color::White, this));
+  }
 
-  putPiece(1, 0, new Pawn(1, 0, Color::White, this));
-  putPiece(1, 1, new Pawn(1, 1, Color::White, this));
-  putPiece(1, 2, new Pawn(1, 2, Color::White, this));
-  putPiece(1, 3, new Pawn(1, 3, Color::White, this));
-
-  putPiece(1, 4, new Pawn(1, 4, Color::White, this));
-  putPiece(1, 5, new Pawn(1, 5, Color::White, this));
-  putPiece(1, 6, new Pawn(1, 6, Color::White, this));
-  putPiece(1, 7, new Pawn(1, 7, Color::White, this));
-
-  putPiece(0, 0, new Rook(0, 0, Color::White, this));
-  putPiece(0, 1, new Knight(0, 1, Color::White, this));
-  putPiece(0, 2, new Bishop(0, 2, Color::White, this));
-  putPiece(0, 3, new Queen(0, 3, Color::White, this));
-  putPiece(0, 4, new King(0, 4, Color::White, this));
-  putPiece(0, 5, new Bishop(0, 5, Color::White, this));
-  putPiece(0, 6, new Knight(0, 6, Color::White, this));
-  putPiece(0, 7, new Rook(0, 7, Color::White, this));
+  addNewPiece(0, 0, new Rook(0, 0, Color::White, this));
+  addNewPiece(0, 1, new Knight(0, 1, Color::White, this));
+  addNewPiece(0, 2, new Bishop(0, 2, Color::White, this));
+  addNewPiece(0, 3, new Queen(0, 3, Color::White, this));
+  addNewPiece(0, 4, new King(0, 4, Color::White, this));
+  addNewPiece(0, 5, new Bishop(0, 5, Color::White, this));
+  addNewPiece(0, 6, new Knight(0, 6, Color::White, this));
+  addNewPiece(0, 7, new Rook(0, 7, Color::White, this));
 
   // Black pieces
 
-  putPiece(6, 0, new Pawn(6, 0, Color::Black, this));
-  putPiece(6, 1, new Pawn(6, 1, Color::Black, this));
-  putPiece(6, 2, new Pawn(6, 2, Color::Black, this));
-  putPiece(6, 3, new Pawn(6, 3, Color::Black, this));
+  for (int i = 0; i < 8; i++)
+  {
+    addNewPiece(6, i, new Pawn(6, i, Color::Black, this));
+  }
 
-  putPiece(6, 4, new Pawn(6, 4, Color::Black, this));
-  putPiece(6, 5, new Pawn(6, 5, Color::Black, this));
-  putPiece(6, 6, new Pawn(6, 6, Color::Black, this));
-  putPiece(6, 7, new Pawn(6, 7, Color::Black, this));
-
-  putPiece(7, 0, new Rook(7, 0, Color::Black, this));
-  putPiece(7, 1, new Knight(7, 1, Color::Black, this));
-  putPiece(7, 2, new Bishop(7, 2, Color::Black, this));
-  putPiece(7, 3, new Queen(7, 3, Color::Black, this));
-  putPiece(7, 4, new King(7, 4, Color::Black, this));
-  putPiece(7, 5, new Bishop(7, 5, Color::Black, this));
-  putPiece(7, 6, new Knight(7, 6, Color::Black, this));
-  putPiece(7, 7, new Rook(7, 7, Color::Black, this));
+  addNewPiece(7, 0, new Rook(7, 0, Color::Black, this));
+  addNewPiece(7, 1, new Knight(7, 1, Color::Black, this));
+  addNewPiece(7, 2, new Bishop(7, 2, Color::Black, this));
+  addNewPiece(7, 3, new Queen(7, 3, Color::Black, this));
+  addNewPiece(7, 4, new King(7, 4, Color::Black, this));
+  addNewPiece(7, 5, new Bishop(7, 5, Color::Black, this));
+  addNewPiece(7, 6, new Knight(7, 6, Color::Black, this));
+  addNewPiece(7, 7, new Rook(7, 7, Color::Black, this));
 }
 
 void Chessboard::onCellClicked(int x, int y)
@@ -120,7 +109,19 @@ void Chessboard::clearCell(int x, int y)
 ChessPiece *Chessboard::putPiece(int x, int y, ChessPiece *piece)
 {
   ui_->putPiece(x, y, piece->getName(), piece->getColor());
-  return cells_[x][y].putPiece(piece);
+  ChessPiece *deadPiece = cells_[x][y].putPiece(piece);
+
+  if (std::any_of(pieces_.begin(), pieces_.end(), [](ChessPiece *p)
+                  { return p->threatensKing(); }))
+  {
+    ui_->showMessage("Check !");
+  }
+  else
+  {
+    ui_->clearMessage();
+  }
+
+  return deadPiece;
 }
 
 ChessPiece *Chessboard::getPiece(int x, int y)
@@ -136,4 +137,11 @@ bool Chessboard::hasPiece(int x, int y)
 void Chessboard::addDeadPiece(ChessPiece *piece)
 {
   ui_->addDeadPiece(piece->getName(), piece->getColor());
+}
+
+void Chessboard::addNewPiece(int x, int y, ChessPiece *piece)
+{
+  ui_->putPiece(x, y, piece->getName(), piece->getColor());
+  cells_[x][y].putPiece(piece);
+  pieces_.push_back(piece);
 }

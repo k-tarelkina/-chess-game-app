@@ -12,7 +12,9 @@ public:
   ~Bishop() override;
 
   std::string getName() override;
-  std::vector<Coordinates> getPossiblePaths() override;
+
+protected:
+  std::vector<Coordinates> getAllPaths() override;
 
 private:
   std::vector<Coordinates> prunePath(std::vector<Coordinates> path);

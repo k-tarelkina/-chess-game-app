@@ -38,6 +38,8 @@ public:
   void addDeadPiece(const std::string &pieceName, Color color);
   void highlightSelectedCell(int x, int y);
   void highlightCells(const std::vector<Coordinates> &coordinates);
+  void showMessage(const std::string &message);
+  void clearMessage();
 
 protected:
   RefPtr<Window> window_;

@@ -19,15 +19,17 @@ public:
   void moveTo(int x, int y);
   void die();
   bool canMoveTo(int x, int y);
+  bool threatensKing();
   Color getColor();
+  std::vector<Coordinates> getPossiblePaths();
 
   virtual std::string getName() = 0;
-  virtual std::vector<Coordinates> getPossiblePaths() = 0;
 
 protected:
   int x_;
   int y_;
   bool hasMoved_;
+  bool isDead_;
   Color color_;
   Chessboard *chessboard_;
 
@@ -35,4 +37,6 @@ protected:
   bool isPieceOfOppositeColor(int x, int y);
   bool hasPiece(int x, int y);
   bool isKingOfOppositeColor(int x, int y);
+
+  virtual std::vector<Coordinates> getAllPaths() = 0;
 };

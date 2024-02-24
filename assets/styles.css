@@ -12,6 +12,7 @@ body {
   font-family: "Namdhinggo", serif;
   font-weight: 400;
   font-style: normal;
+  font-size: larger;
 }
 
 h1 {
@@ -118,4 +119,10 @@ input[type="file"]::file-selector-button:hover,
 
 .highlighted-occupied.black {
   background-image: radial-gradient(circle 40px, #c68989, #acad94);
+}
+
+.check-message {
+  text-align: center;
+  min-height: 20px;
+  color: #c68989;
 }

@@ -106,3 +106,14 @@ void UI::highlightCells(const std::vector<Coordinates> &coordinates)
   command = command + "])";
   view()->EvaluateScript(command.c_str());
 }
+
+void UI::showMessage(const std::string &message)
+{
+  std::string command = "showMessage(\"" + message + "\")";
+  view()->EvaluateScript(command.c_str());
+}
+
+void UI::clearMessage()
+{
+  view()->EvaluateScript("clearMessage()");
+}

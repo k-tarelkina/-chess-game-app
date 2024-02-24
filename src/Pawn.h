@@ -11,5 +11,7 @@ public:
   ~Pawn() override;
 
   std::string getName() override;
-  std::vector<Coordinates> getPossiblePaths() override;
+
+protected:
+  std::vector<Coordinates> getAllPaths() override;
 };

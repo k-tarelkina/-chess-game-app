@@ -71,6 +71,14 @@ function addDeadPiece(pieceName, pieceColor) {
   }
 }
 
+function showMessage(message) {
+  document.getElementById("message").innerText = message;
+}
+
+function clearMessage() {
+  document.getElementById("message").innerText = "";
+}
+
 for (let x = 7; x >= 0; x--) {
   for (let y = 0; y < 8; y++) {
     const element = document.createElement("div");
