@@ -26,20 +26,26 @@ function initializeBoard() {
 }
 
 function highlightSelectedCell(x, y) {
-  cells[x][y].classList.add("selected");
+  cells[x][y].classList.add(STATE.Selected);
 }
 
 function highlightCells(coordinates) {
   for (let c of coordinates) {
-    cells[c[0]][c[1]].classList.add("highlighted-free"); // TODO change highlight depending on wether there is a piece
+    const element = cells[c[0]][c[1]];
+    if (element.getElementsByTagName("img").length > 0) {
+      element.classList.add(STATE.HighlightedOccupied);
+    } else {
+      element.classList.add(STATE.HighlightedFree);
+    }
   }
 }
 
 function clearCellsHighlight() {
   for (let row of cells) {
     for (let element of row) {
-      element.classList.remove("highlighted-free");
-      element.classList.remove("selected");
+      element.classList.remove(STATE.HighlightedOccupied);
+      element.classList.remove(STATE.HighlightedFree);
+      element.classList.remove(STATE.Selected);
     }
   }
 }

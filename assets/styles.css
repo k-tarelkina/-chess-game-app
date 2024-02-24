@@ -96,20 +96,26 @@ input[type="file"]::file-selector-button:hover,
   color: white;
 }
 
-.selected {
-  border-width: 5px;
-  border-color: #6e7271;
-  border-style: solid;
+.selected.white {
+  background-image: radial-gradient(circle 40px, #d6d7b9, white);
 }
 
-.highlighted-free {
-  border-width: 5px;
-  border-color: #e2e2e2;
-  border-style: solid;
+.selected.black {
+  background-image: radial-gradient(circle 40px, #8a8a76, #acad94);
 }
 
-.highlighted-occupied {
-  border-width: 5px;
-  border-color: #d8d4d5;
-  border-style: solid;
+.highlighted-free.white {
+  background-image: radial-gradient(circle 40px, #d6d7b9, white);
+}
+
+.highlighted-free.black {
+  background-image: radial-gradient(circle 40px, #8a8a76, #acad94);
+}
+
+.highlighted-occupied.white {
+  background-image: radial-gradient(circle 40px, #c68989, white);
+}
+
+.highlighted-occupied.black {
+  background-image: radial-gradient(circle 40px, #c68989, #acad94);
 }
