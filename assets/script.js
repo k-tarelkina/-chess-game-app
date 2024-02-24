@@ -57,7 +57,6 @@ function addDeadPiece(pieceName, pieceColor) {
   const element = document.createElement("img");
   element.src = `${pieceName}_${pieceColor}.svg`;
   element.classList.add("dead-piece-image");
-  document.getElementById("test").innerText = `${pieceName}_${pieceColor}.svg`;
 
   if (pieceColor == COLOR.White) {
     document.getElementById("whitePiecesContainer").append(element);

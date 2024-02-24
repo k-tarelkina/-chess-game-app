@@ -16,7 +16,7 @@ std::vector<Coordinates> Bishop::getPossiblePaths()
   {
     std::vector<Coordinates> currentPath;
 
-    for (int i = 0; i < 8; i++)
+    for (int i = 1; i < 8; i++)
       currentPath.push_back(direction(x_, y_, i));
 
     currentPath = prunePath(currentPath);
@@ -32,15 +32,20 @@ std::vector<Coordinates> Bishop::prunePath(std::vector<Coordinates> path)
   for (auto p : path)
   {
     if (p.first >= 8 || p.second >= 8 || p.first < 0 || p.second < 0)
+    {
       break;
+    }
 
     if (isPieceOfSameColor(p.first, p.second))
+    {
       break;
-
+    }
     prunedPath.push_back(p);
 
     if (isPieceOfOppositeColor(p.first, p.second))
+    {
       break;
+    }
   }
   return prunedPath;
 }
