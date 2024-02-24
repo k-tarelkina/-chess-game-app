@@ -30,7 +30,8 @@ void Chessboard::initializePieces()
   addNewPiece(0, 1, new Knight(0, 1, Color::White, this));
   addNewPiece(0, 2, new Bishop(0, 2, Color::White, this));
   addNewPiece(0, 3, new Queen(0, 3, Color::White, this));
-  addNewPiece(0, 4, new King(0, 4, Color::White, this));
+  whiteKing_ = new King(0, 4, Color::White, this);
+  addNewPiece(0, 4, whiteKing_);
   addNewPiece(0, 5, new Bishop(0, 5, Color::White, this));
   addNewPiece(0, 6, new Knight(0, 6, Color::White, this));
   addNewPiece(0, 7, new Rook(0, 7, Color::White, this));
@@ -46,7 +47,8 @@ void Chessboard::initializePieces()
   addNewPiece(7, 1, new Knight(7, 1, Color::Black, this));
   addNewPiece(7, 2, new Bishop(7, 2, Color::Black, this));
   addNewPiece(7, 3, new Queen(7, 3, Color::Black, this));
-  addNewPiece(7, 4, new King(7, 4, Color::Black, this));
+  blackKing_ = new King(7, 4, Color::Black, this);
+  addNewPiece(7, 4, blackKing_);
   addNewPiece(7, 5, new Bishop(7, 5, Color::Black, this));
   addNewPiece(7, 6, new Knight(7, 6, Color::Black, this));
   addNewPiece(7, 7, new Rook(7, 7, Color::Black, this));
@@ -74,7 +76,7 @@ void Chessboard::onCellClicked(int x, int y)
   else
   {
     highlightSelectedCell(x, y);
-    auto possiblePaths = piece->getPossiblePaths();
+    auto possiblePaths = piece->getCorrectPaths();
     highlightCells(possiblePaths);
   }
 }
@@ -132,6 +134,12 @@ ChessPiece *Chessboard::getPiece(int x, int y)
 bool Chessboard::hasPiece(int x, int y)
 {
   return cells_[x][y].hasPiece();
+}
+
+bool Chessboard::isUnderThreat(int x, int y)
+{
+  return std::any_of(pieces_.begin(), pieces_.end(), [x, y](ChessPiece *p)
+                     { return p->canFight(x, y); });
 }
 
 void Chessboard::addDeadPiece(ChessPiece *piece)

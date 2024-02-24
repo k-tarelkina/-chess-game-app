@@ -11,6 +11,7 @@ public:
   ~King() override;
 
   std::string getName() override;
+  bool cannotMove();
 
 protected:
   std::vector<Coordinates> getAllPaths() override;

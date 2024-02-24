@@ -46,7 +46,7 @@ bool ChessPiece::canMoveTo(int x, int y)
   {
     return false;
   }
-  auto possiblePaths = getPossiblePaths();
+  auto possiblePaths = getCorrectPaths();
   return std::any_of(
       possiblePaths.begin(),
       possiblePaths.end(),
@@ -68,7 +68,22 @@ bool ChessPiece::threatensKing()
       { return this->isKingOfOppositeColor(c.first, c.second); });
 }
 
-std::vector<Coordinates> ChessPiece::getPossiblePaths()
+bool ChessPiece::canFight(int x, int y)
+{
+  if (isDead_)
+  {
+    return false;
+  }
+  auto possiblePaths = getAllPaths();
+  return std::any_of(
+      possiblePaths.begin(),
+      possiblePaths.end(),
+      [x, y](const Coordinates &c)
+      { return c.first == x && c.second == y; });
+}
+
+std::vector<Coordinates>
+ChessPiece::getCorrectPaths()
 {
   std::vector<Coordinates> possiblePaths = getAllPaths();
   std::vector<Coordinates> correctPaths;
@@ -111,4 +126,9 @@ bool ChessPiece::isKingOfOppositeColor(int x, int y)
 bool ChessPiece::hasPiece(int x, int y)
 {
   return chessboard_->hasPiece(x, y);
+}
+
+bool ChessPiece::isUnderThreat(int x, int y)
+{
+  return chessboard_->isUnderThreat(x, y);
 }

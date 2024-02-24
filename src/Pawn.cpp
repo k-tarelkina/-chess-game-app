@@ -7,6 +7,27 @@ std::string Pawn::getName()
   return "Pawn";
 }
 
+bool Pawn::canFight(int x, int y)
+{
+  if (isDead_)
+  {
+    return false;
+  }
+
+  if (color_ == Color::White && x_ == 0 ||
+      color_ == Color::Black && x_ == 7)
+  {
+    return false;
+  }
+
+  if (y_ > 0 && y_ < 7)
+  {
+    return true;
+  }
+
+  return false;
+}
+
 std::vector<Coordinates> Pawn::getAllPaths()
 {
   if (color_ == Color::White && x_ == 0 ||

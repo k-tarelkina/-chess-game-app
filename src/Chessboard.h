@@ -36,12 +36,17 @@ public:
   ChessPiece *putPiece(int x, int y, ChessPiece *piece);
   ChessPiece *getPiece(int x, int y);
   bool hasPiece(int x, int y);
+  bool isUnderThreat(int x, int y);
 
   void addDeadPiece(ChessPiece *piece);
 
 private:
   std::vector<std::vector<ChessboardCell>> cells_;
   std::vector<ChessPiece *> pieces_;
+
+  King *whiteKing_;
+  King *blackKing_;
+
   ChessboardCell *selectedCell_;
   UI *ui_;
 

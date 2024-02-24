@@ -11,7 +11,9 @@ public:
   ~Pawn() override;
 
   std::string getName() override;
+  bool canFight(int x, int y) override;
 
 protected:
-  std::vector<Coordinates> getAllPaths() override;
+  std::vector<Coordinates>
+  getAllPaths() override;
 };
