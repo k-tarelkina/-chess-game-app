@@ -9,12 +9,9 @@ std::string Pawn::getName()
 
 std::vector<Coordinates> Pawn::getPossiblePaths()
 {
-  std::cout << "Pawn::getPossiblePaths" << std::endl;
-
   if (color_ == Color::White && x_ == 0 ||
       color_ == Color::Black && x_ == 7)
   {
-    std::cout << "cannot move" << std::endl;
     return {};
   }
 

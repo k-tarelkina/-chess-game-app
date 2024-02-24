@@ -22,8 +22,6 @@ void UI::OnDOMReady(ultralight::View *caller,
                     bool is_main_frame,
                     const String &url)
 {
-  std::cout << "OnDOMReady" << std::endl;
-
   RefPtr<JSContext> locked_context = view()->LockJSContext();
   SetJSContext(locked_context->ctx());
 
