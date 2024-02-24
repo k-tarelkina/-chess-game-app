@@ -134,3 +134,10 @@ git clone https://github.com/ultralight-ux/ultralight-quick-start
 ```
 
 Follow the [Writing Your First App](https://docs.ultralig.ht/docs/writing-your-first-app) guide and other tutorials in the documentation for more info.
+
+## TODO
+
+- Add possibility to start game over (add button on UI + corresponding functionality)
+- Add timer (reset on each turn)
+- Add possibility to enter user names at the beginning of each game
+- Add web server to connect to the same game from different computers
