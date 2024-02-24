@@ -26,15 +26,11 @@ public:
 
   void onCellClicked(int x, int y) override;
   void onUiReady() override;
-  // TODO move to private methods
-  void highlightCells(const std::vector<Coordinates> &coordinates);
-  void highlightSelectedCell(int x, int y);
-  void clearCellsHighlight();
-
-  void clearCell(int x, int y);
 
   ChessPiece *putPiece(int x, int y, ChessPiece *piece);
   ChessPiece *getPiece(int x, int y);
+  void clearCell(int x, int y);
+
   bool hasPiece(int x, int y);
   bool isUnderThreat(int x, int y);
 
@@ -51,4 +47,7 @@ private:
   UI *ui_;
 
   void addNewPiece(int x, int y, ChessPiece *piece);
+  void highlightCells(const std::vector<Coordinates> &coordinates);
+  void highlightSelectedCell(int x, int y);
+  void clearCellsHighlight();
 };
