@@ -73,6 +73,7 @@ input[type="file"]::file-selector-button:hover,
 
 .chess-board {
   width: 830px;
+  margin: 30px;
   display: grid;
   border-width: 15px;
   border-style: double;
