@@ -34,4 +34,5 @@ protected:
   bool isPieceOfSameColor(int x, int y);
   bool isPieceOfOppositeColor(int x, int y);
   bool hasPiece(int x, int y);
+  bool isKingOfOppositeColor(int x, int y);
 };

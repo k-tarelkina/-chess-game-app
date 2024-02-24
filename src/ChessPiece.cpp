@@ -67,6 +67,15 @@ bool ChessPiece::isPieceOfOppositeColor(int x, int y)
   return piece->getColor() != color_;
 }
 
+bool ChessPiece::isKingOfOppositeColor(int x, int y)
+{
+  ChessPiece *piece = chessboard_->getPiece(x, y);
+  if (piece == nullptr)
+    return false;
+
+  return piece->getColor() != color_ && piece->getName() == "King";
+}
+
 bool ChessPiece::hasPiece(int x, int y)
 {
   return chessboard_->hasPiece(x, y);

@@ -36,7 +36,7 @@ std::vector<Coordinates> Bishop::prunePath(std::vector<Coordinates> path)
       break;
     }
 
-    if (isPieceOfSameColor(p.first, p.second))
+    if (isPieceOfSameColor(p.first, p.second) || isKingOfOppositeColor(p.first, p.second))
     {
       break;
     }

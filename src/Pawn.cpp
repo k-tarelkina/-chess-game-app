@@ -25,10 +25,10 @@ std::vector<Coordinates> Pawn::getPossiblePaths()
     if (!hasPiece(x_ + 1, y_))
       paths.push_back(std::make_pair(x_ + 1, y_));
 
-    if (y_ > 0 && isPieceOfOppositeColor(x_ + 1, y_ - 1))
+    if (y_ > 0 && isPieceOfOppositeColor(x_ + 1, y_ - 1) && !isKingOfOppositeColor(x_ + 1, y_ - 1))
       paths.push_back(std::make_pair(x_ + 1, y_ - 1));
 
-    if (y_ < 7 && isPieceOfOppositeColor(x_ + 1, y_ + 1))
+    if (y_ < 7 && isPieceOfOppositeColor(x_ + 1, y_ + 1) && !isKingOfOppositeColor(x_ + 1, y_ + 1))
       paths.push_back(std::make_pair(x_ + 1, y_ + 1));
   }
   else // Black color
