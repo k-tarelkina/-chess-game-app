@@ -45,9 +45,11 @@ private:
 
   ChessboardCell *selectedCell_;
   UI *ui_;
+  Color currentColorTurn_ = Color::White;
 
   void addNewPiece(int x, int y, ChessPiece *piece);
   void highlightCells(const std::vector<Coordinates> &coordinates);
   void highlightSelectedCell(int x, int y);
   void clearCellsHighlight();
+  void switchColorTurn();
 };

@@ -66,15 +66,17 @@ void Chessboard::onCellClicked(int x, int y)
     return;
   }
 
-  selectedCell_ = &cells_[x][y];
-  ChessPiece *piece = selectedCell_->getPiece();
+  ChessboardCell *cell = &cells_[x][y];
+  ChessPiece *piece = cell->getPiece();
 
   if (piece == nullptr)
   {
-    selectedCell_ = nullptr; // Cannot select empty cells
+    return; // Cannot select empty cells
   }
-  else
+
+  if (piece->getColor() == currentColorTurn_)
   {
+    selectedCell_ = cell;
     highlightSelectedCell(x, y);
     auto possiblePaths = piece->getCorrectPaths();
     highlightCells(possiblePaths);
@@ -123,6 +125,8 @@ ChessPiece *Chessboard::putPiece(int x, int y, ChessPiece *piece)
     ui_->clearMessage();
   }
 
+  switchColorTurn();
+
   return deadPiece;
 }
 
@@ -152,4 +156,9 @@ void Chessboard::addNewPiece(int x, int y, ChessPiece *piece)
   ui_->putPiece(x, y, piece->getName(), piece->getColor());
   cells_[x][y].putPiece(piece);
   pieces_.push_back(piece);
+}
+
+void Chessboard::switchColorTurn()
+{
+  currentColorTurn_ = currentColorTurn_ == Color::White ? Color::Black : Color::White;
 }
