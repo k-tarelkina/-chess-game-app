@@ -29,6 +29,7 @@ public:
   void OnResize(ultralight::Window *window, uint32_t width, uint32_t height);
 
   void onCellClicked(const JSObject &obj, const JSArgs &args);
+  void onStartGameOver(const JSObject &obj, const JSArgs &args);
 
   void attachObserver(UIObserver *observer);
 
@@ -40,6 +41,10 @@ public:
   void highlightCells(const std::vector<Coordinates> &coordinates);
   void showMessage(const std::string &message);
   void clearMessage();
+
+  void enableStartGameOverButton();
+  void disableStartGameOverButton();
+  void clearBoard();
 
 protected:
   RefPtr<Window> window_;

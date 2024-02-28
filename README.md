@@ -75,6 +75,15 @@ public:
 }
 
 // UI class
+void UI::OnDOMReady(ultralight::View *caller,
+                    uint64_t frame_id,
+                    bool is_main_frame,
+                    const String &url)
+{
+  // ...
+  global["onCellClicked"] = BindJSCallback(&UI::onCellClicked);
+}
+
 void UI::onCellClicked(const JSObject &obj, const JSArgs &args)
 {
   for (auto observer : uiObservers_)

@@ -25,6 +25,7 @@ public:
   void initializePieces();
 
   void onCellClicked(int x, int y) override;
+  void onStartGameOver() override;
   void onUiReady() override;
 
   ChessPiece *putPiece(int x, int y, ChessPiece *piece);
@@ -46,6 +47,8 @@ private:
   ChessboardCell *selectedCell_;
   UI *ui_;
   Color currentColorTurn_ = Color::White;
+
+  bool gameInProgress = false;
 
   void addNewPiece(int x, int y, ChessPiece *piece);
   void highlightCells(const std::vector<Coordinates> &coordinates);

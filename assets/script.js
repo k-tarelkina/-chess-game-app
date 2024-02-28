@@ -79,6 +79,30 @@ function clearMessage() {
   document.getElementById("message").innerText = "";
 }
 
+function onStartGameOverClicked() {
+  onStartGameOver();
+}
+
+function disableStartGameOverButton() {
+  const startOverButton = document.getElementById("startOverButton");
+  startOverButton.disabled = true;
+  startOverButton.classList.add("disabled");
+}
+
+function enableStartGameOverButton() {
+  const startOverButton = document.getElementById("startOverButton");
+  startOverButton.disabled = false;
+  startOverButton.classList.remove("disabled");
+}
+
+function clearBoard() {
+  for (let x = 7; x >= 0; x--) {
+    for (let y = 0; y < 8; y++) {
+      removePiece(x, y);
+    }
+  }
+}
+
 for (let x = 7; x >= 0; x--) {
   for (let y = 0; y < 8; y++) {
     const element = document.createElement("div");
@@ -97,8 +121,5 @@ for (let x = 7; x >= 0; x--) {
   }
 }
 
-const startOverButton = document.getElementById("startOverButton");
-startOverButton.disabled = true;
-startOverButton.classList.add("disabled");
-
+disableStartGameOverButton();
 initializeBoard();
