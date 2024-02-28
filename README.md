@@ -128,6 +128,8 @@ Responsible for UI-backend communication. For more details see Section 2.
 
 The "manager" of the game. Is responsible for moving pieces, determining check criteria and updating UI.
 
+The board is represented as a 8 x 8 matrix and indexed in a usual way (e.g. (0, 0) is the left lower corner).
+
 #### ChessPiece class
 
 Base class for all chess pieces. Each chess piece should implement its own rules of choosing the path.
