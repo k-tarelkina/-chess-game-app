@@ -59,6 +59,15 @@ h1 {
   margin-bottom: 10px;
 }
 
+.button.disabled {
+  color: lightgray;
+}
+
+.button.disabled:hover {
+  background-color: white;
+  cursor: default;
+}
+
 input[type="file"]::file-selector-button:hover,
 .button:hover {
   background-color: lightgray;

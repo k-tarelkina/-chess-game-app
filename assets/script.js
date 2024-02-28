@@ -97,4 +97,8 @@ for (let x = 7; x >= 0; x--) {
   }
 }
 
+const startOverButton = document.getElementById("startOverButton");
+startOverButton.disabled = true;
+startOverButton.classList.add("disabled");
+
 initializeBoard();
