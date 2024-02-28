@@ -57,7 +57,7 @@ void Chessboard::initializePieces()
 void Chessboard::onCellClicked(int x, int y)
 {
   bool moveToThisCell = selectedCell_ != nullptr && selectedCell_->hasPiece();
-  if (moveToThisCell)
+  if (moveToThisCell && usersEntered())
   {
     if (!gameInProgress)
     {
@@ -69,6 +69,16 @@ void Chessboard::onCellClicked(int x, int y)
     piece->moveTo(x, y);
     clearCellsHighlight();
     selectedCell_ = nullptr;
+    return;
+  }
+
+  // Trying to move a piece, but usernames are not entered.
+  if (moveToThisCell)
+  {
+    // Call to UI
+    ui_->showMessage("Enter usernames before starting the game");
+    std::cout
+        << "Cannot move, usernames not entered" << std::endl;
     return;
   }
 
@@ -174,6 +184,9 @@ void Chessboard::onStartGameOver()
   gameInProgress = false;
   ui_->disableStartGameOverButton();
   ui_->clearBoard();
+  ui_->clearUserNames();
+  whitePiecesUser_ = "";
+  blackPiecesUser_ = "";
 
   cells_.clear();
   std::vector<std::vector<ChessboardCell>> newCells(8, std::vector<ChessboardCell>(0));
@@ -184,4 +197,19 @@ void Chessboard::onStartGameOver()
 
   initializeBoard();
   initializePieces();
+}
+
+void Chessboard::onAddWhitePiecesUser(const std::string &username)
+{
+  whitePiecesUser_ = username;
+}
+
+void Chessboard::onAddBlackPiecesUser(const std::string &username)
+{
+  blackPiecesUser_ = username;
+}
+
+bool Chessboard::usersEntered()
+{
+  return whitePiecesUser_.length() > 0 && blackPiecesUser_.length() > 0;
 }

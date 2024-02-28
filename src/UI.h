@@ -30,6 +30,8 @@ public:
 
   void onCellClicked(const JSObject &obj, const JSArgs &args);
   void onStartGameOver(const JSObject &obj, const JSArgs &args);
+  void onAddWhitePiecesUser(const JSObject &obj, const JSArgs &args);
+  void onAddBlackPiecesUser(const JSObject &obj, const JSArgs &args);
 
   void attachObserver(UIObserver *observer);
 
@@ -45,6 +47,7 @@ public:
   void enableStartGameOverButton();
   void disableStartGameOverButton();
   void clearBoard();
+  void clearUserNames();
 
 protected:
   RefPtr<Window> window_;

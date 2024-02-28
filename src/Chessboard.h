@@ -27,6 +27,8 @@ public:
   void onCellClicked(int x, int y) override;
   void onStartGameOver() override;
   void onUiReady() override;
+  void onAddWhitePiecesUser(const std::string &username) override;
+  void onAddBlackPiecesUser(const std::string &username) override;
 
   ChessPiece *putPiece(int x, int y, ChessPiece *piece);
   ChessPiece *getPiece(int x, int y);
@@ -44,15 +46,20 @@ private:
   King *whiteKing_;
   King *blackKing_;
 
+  std::string whitePiecesUser_;
+  std::string blackPiecesUser_;
+
   ChessboardCell *selectedCell_;
   UI *ui_;
   Color currentColorTurn_ = Color::White;
 
-  bool gameInProgress = false;
+  bool gameInProgress = false; // TODO add underscore
 
   void addNewPiece(int x, int y, ChessPiece *piece);
   void highlightCells(const std::vector<Coordinates> &coordinates);
   void highlightSelectedCell(int x, int y);
   void clearCellsHighlight();
   void switchColorTurn();
+
+  bool usersEntered();
 };

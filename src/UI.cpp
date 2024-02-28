@@ -29,6 +29,8 @@ void UI::OnDOMReady(ultralight::View *caller,
 
   global["onCellClicked"] = BindJSCallback(&UI::onCellClicked);
   global["onStartGameOver"] = BindJSCallback(&UI::onStartGameOver);
+  global["onAddWhitePiecesUser"] = BindJSCallback(&UI::onAddWhitePiecesUser);
+  global["onAddBlackPiecesUser"] = BindJSCallback(&UI::onAddBlackPiecesUser);
 
   for (auto observer : uiObservers_)
   {
@@ -59,6 +61,24 @@ void UI::onStartGameOver(const JSObject &obj, const JSArgs &args)
   for (auto observer : uiObservers_)
   {
     observer->onStartGameOver();
+  }
+}
+
+void UI::onAddWhitePiecesUser(const JSObject &obj, const JSArgs &args)
+{
+  for (auto observer : uiObservers_)
+  {
+    auto username = String(args[0]).utf8().data();
+    observer->onAddWhitePiecesUser(username);
+  }
+}
+
+void UI::onAddBlackPiecesUser(const JSObject &obj, const JSArgs &args)
+{
+  for (auto observer : uiObservers_)
+  {
+    auto username = String(args[0]).utf8().data();
+    observer->onAddBlackPiecesUser(args[0]);
   }
 }
 
@@ -140,4 +160,9 @@ void UI::disableStartGameOverButton()
 void UI::clearBoard()
 {
   view()->EvaluateScript("clearBoard()");
+}
+
+void UI::clearUserNames()
+{
+  view()->EvaluateScript("clearUserNames()");
 }

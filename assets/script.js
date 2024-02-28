@@ -103,6 +103,35 @@ function clearBoard() {
   }
 }
 
+function onWhiteUserNameSubmit() {
+  const input = document.getElementById("whiteUserNameInput");
+  const name = input.value;
+  const label = document.getElementById("whiteUserName");
+  if (name.length == 1 || name.length > 30) {
+    label.innerText = "Error: username should have 1-30 characters.";
+  } else {
+    label.innerText = name;
+  }
+  onAddWhitePiecesUser(name);
+}
+
+function onBlackUserNameSubmit() {
+  const input = document.getElementById("blackUserNameInput");
+  const name = input.value;
+  const label = document.getElementById("blackUserName");
+  if (name.length == 1 || name.length > 30) {
+    label.innerText = "Error: username should have 1-30 characters.";
+  } else {
+    label.innerText = name;
+  }
+  onAddBlackPiecesUser(name);
+}
+
+function clearUserNames() {
+  document.getElementById("whiteUserName").innerText = "";
+  document.getElementById("blackUserName").innerText = "";
+}
+
 for (let x = 7; x >= 0; x--) {
   for (let y = 0; y < 8; y++) {
     const element = document.createElement("div");

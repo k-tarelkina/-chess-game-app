@@ -26,6 +26,40 @@
       Start over
     </button>
 
+    <input
+      class="input"
+      type="text"
+      minlength="1"
+      maxlength="30"
+      id="whiteUserNameInput"
+      placeholder="Enter a name for the white pieces user..."
+    />
+    <button
+      id="whiteUserNameButton"
+      class="button"
+      onclick="onWhiteUserNameSubmit()"
+    >
+      Enter user
+    </button>
+    <p id="whiteUserName"></p>
+
+    <input
+      class="input"
+      type="text"
+      minlength="1"
+      maxlength="30"
+      id="blackUserNameInput"
+      placeholder="Enter a name for the black pieces user..."
+    />
+    <button
+      id="blackUserNameButton"
+      class="button"
+      onclick="onBlackUserNameSubmit()"
+    >
+      Enter user
+    </button>
+    <p id="blackUserName"></p>
+
     <main class="main">
       <div class="pieces-container" id="whitePiecesContainer"></div>
       <div id="chessboard" class="chess-board"></div>

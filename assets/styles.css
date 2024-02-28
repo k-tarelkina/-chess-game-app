@@ -70,10 +70,17 @@ h1 {
   cursor: default;
 }
 
-input[type="file"]::file-selector-button:hover,
 .button:hover {
   background-color: lightgray;
   cursor: pointer;
+}
+
+.input {
+  height: 50px;
+  width: 100%;
+  padding: 10px;
+  padding-left: 15px;
+  padding-right: 15px;
 }
 
 .main {
