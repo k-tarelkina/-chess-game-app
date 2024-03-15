@@ -13,57 +13,83 @@
 
   <body class="wrapper">
     <header class="header">
-      <h1>Chess Game</h1>
+      <h1>The Game of Chess</h1>
     </header>
 
-    <p id="message" class="check-message"></p>
+    <p id="message" class="message"></p>
 
-    <button
-      id="startOverButton"
-      class="button"
-      onclick="onStartGameOverClicked()"
-    >
-      Start over
-    </button>
+    <div class="buttons-group">
+      <button
+        id="startGameButton"
+        class="button"
+        onclick="onStartGameClicked()"
+      >
+        Start game
+      </button>
+
+      <button
+        id="startGameOnlineButton"
+        class="button"
+        onclick="onStartGameOnlineClicked()"
+      >
+        Start game online
+      </button>
+
+      <button
+        id="startGameOverButton"
+        class="button"
+        onclick="onStartGameOverClicked()"
+      >
+        Start over
+      </button>
+    </div>
 
     <main class="main">
       <div class="sidepanel">
-        <input
-          class="input"
-          type="text"
-          minlength="1"
-          maxlength="30"
-          id="whiteUserNameInput"
-          placeholder="Enter a name for the white pieces user..."
-        />
-        <button
-          id="whiteUserNameButton"
-          class="button"
-          onclick="onWhiteUserNameSubmit()"
-        >
-          Enter user
-        </button>
-        <p id="whiteUserName"></p>
+        <div class="user-name-group">
+          <input
+            class="input"
+            type="text"
+            minlength="1"
+            maxlength="30"
+            id="whiteUserNameInput"
+            placeholder="Enter a name for the white pieces user..."
+          />
+          <button
+            id="whiteUserNameButton"
+            class="button"
+            onclick="onWhiteUserNameSubmit()"
+          >
+            Enter user
+          </button>
+          <p id="whiteUserName" class="username"></p>
+          <p id="whiteUserMessage" class="message"></p>
+        </div>
+
         <div class="pieces-container" id="blackPiecesContainer"></div>
       </div>
       <div id="chessboard" class="chess-board"></div>
       <div class="sidepanel">
-        <input
-          class="input"
-          type="text"
-          minlength="1"
-          maxlength="30"
-          id="blackUserNameInput"
-          placeholder="Enter a name for the black pieces user..."
-        />
-        <button
-          id="blackUserNameButton"
-          class="button"
-          onclick="onBlackUserNameSubmit()"
-        >
-          Enter user
-        </button>
-        <p id="blackUserName"></p>
+        <div class="user-name-group">
+          <input
+            class="input"
+            type="text"
+            minlength="1"
+            maxlength="30"
+            id="blackUserNameInput"
+            placeholder="Enter a name for the black pieces user..."
+          />
+          <button
+            id="blackUserNameButton"
+            class="button"
+            onclick="onBlackUserNameSubmit()"
+          >
+            Enter user
+          </button>
+          <p id="blackUserName" class="username"></p>
+          <p id="blackUserMessage" class="message"></p>
+        </div>
+
         <div class="pieces-container" id="whitePiecesContainer"></div>
       </div>
     </main>

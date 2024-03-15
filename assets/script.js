@@ -79,20 +79,38 @@ function clearMessage() {
   document.getElementById("message").innerText = "";
 }
 
+function disableButton(id) {
+  const button = document.getElementById(id);
+  button.disabled = true;
+  button.classList.add("disabled");
+}
+
+function enableButton(id) {
+  const button = document.getElementById(id);
+  button.disabled = false;
+  button.classList.remove("disabled");
+}
+
+function onStartGameClicked() {
+  enableButton("startGameOverButton");
+  disableButton("startGameButton");
+  disableButton("startGameOnlineButton");
+  disableButton("blackUserNameButton");
+  disableButton("whiteUserNameButton");
+  onStartGame();
+}
+
+function onStartGameOnlineClicked() {
+  //TODO
+}
+
 function onStartGameOverClicked() {
+  disableButton("startGameOverButton");
+  enableButton("startGameButton");
+  enableButton("startGameOnlineButton");
+  enableButton("blackUserNameButton");
+  enableButton("whiteUserNameButton");
   onStartGameOver();
-}
-
-function disableStartGameOverButton() {
-  const startOverButton = document.getElementById("startOverButton");
-  startOverButton.disabled = true;
-  startOverButton.classList.add("disabled");
-}
-
-function enableStartGameOverButton() {
-  const startOverButton = document.getElementById("startOverButton");
-  startOverButton.disabled = false;
-  startOverButton.classList.remove("disabled");
 }
 
 function clearBoard() {
@@ -103,15 +121,34 @@ function clearBoard() {
   }
 }
 
+let whiteUser = "";
+let blackUser = "";
+
 function onWhiteUserNameSubmit() {
   const input = document.getElementById("whiteUserNameInput");
   const name = input.value;
   const label = document.getElementById("whiteUserName");
+  const errorMessage = document.getElementById("whiteUserMessage");
+
   if (name.length == 1 || name.length > 30) {
-    label.innerText = "Error: username should have 1-30 characters.";
-  } else {
-    label.innerText = name;
+    errorMessage.innerText = "Error: username should have 1-30 characters.";
+    return;
   }
+
+  if (blackUser == name) {
+    errorMessage.innerText = "Error: username already occupied.";
+    return;
+  }
+
+  errorMessage.innerText = "";
+
+  label.innerText = name;
+  whiteUser = name;
+
+  if (blackUser.length > 0) {
+    enableButton("startGameButton");
+  }
+
   onAddWhitePiecesUser(name);
 }
 
@@ -119,15 +156,33 @@ function onBlackUserNameSubmit() {
   const input = document.getElementById("blackUserNameInput");
   const name = input.value;
   const label = document.getElementById("blackUserName");
+  const errorMessage = document.getElementById("blackUserMessage");
+
   if (name.length == 1 || name.length > 30) {
-    label.innerText = "Error: username should have 1-30 characters.";
-  } else {
-    label.innerText = name;
+    errorMessage.innerText = "Error: username should have 1-30 characters.";
+    return;
   }
+
+  if (whiteUser == name) {
+    errorMessage.innerText = "Error: username already occupied.";
+    return;
+  }
+
+  errorMessage.innerText = "";
+
+  label.innerText = name;
+  blackUser = name;
+
+  if (whiteUser.length > 0) {
+    enableButton("startGameButton");
+  }
+
   onAddBlackPiecesUser(name);
 }
 
 function clearUserNames() {
+  whiteUser = "";
+  blackUser = "";
   document.getElementById("whiteUserName").innerText = "";
   document.getElementById("blackUserName").innerText = "";
   document.getElementById("whiteUserNameInput").value = "";
@@ -152,5 +207,8 @@ for (let x = 7; x >= 0; x--) {
   }
 }
 
-disableStartGameOverButton();
+disableButton("startGameButton");
+disableButton("startGameOverButton");
+disableButton("startGameOnlineButton");
+showMessage("Enter usernames to start the game");
 initializeBoard();
