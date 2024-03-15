@@ -92,12 +92,15 @@ function enableButton(id) {
 }
 
 function onStartGameClicked() {
+  onStartGame();
+
+  clearMessage();
+
   enableButton("startGameOverButton");
   disableButton("startGameButton");
   disableButton("startGameOnlineButton");
   disableButton("blackUserNameButton");
   disableButton("whiteUserNameButton");
-  onStartGame();
 }
 
 function onStartGameOnlineClicked() {
@@ -105,12 +108,16 @@ function onStartGameOnlineClicked() {
 }
 
 function onStartGameOverClicked() {
+  onStartGameOver();
+
   disableButton("startGameOverButton");
-  enableButton("startGameButton");
-  enableButton("startGameOnlineButton");
   enableButton("blackUserNameButton");
   enableButton("whiteUserNameButton");
-  onStartGameOver();
+
+  document.getElementById("whitePiecesContainer").innerHTML = "";
+  document.getElementById("blackPiecesContainer").innerHTML = "";
+
+  showMessage("Enter usernames to start the game");
 }
 
 function clearBoard() {
