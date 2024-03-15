@@ -78,7 +78,7 @@ void UI::onAddBlackPiecesUser(const JSObject &obj, const JSArgs &args)
   for (auto observer : uiObservers_)
   {
     auto username = String(args[0]).utf8().data();
-    observer->onAddBlackPiecesUser(args[0]);
+    observer->onAddBlackPiecesUser(username);
   }
 }
 

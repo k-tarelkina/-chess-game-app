@@ -26,44 +26,46 @@
       Start over
     </button>
 
-    <input
-      class="input"
-      type="text"
-      minlength="1"
-      maxlength="30"
-      id="whiteUserNameInput"
-      placeholder="Enter a name for the white pieces user..."
-    />
-    <button
-      id="whiteUserNameButton"
-      class="button"
-      onclick="onWhiteUserNameSubmit()"
-    >
-      Enter user
-    </button>
-    <p id="whiteUserName"></p>
-
-    <input
-      class="input"
-      type="text"
-      minlength="1"
-      maxlength="30"
-      id="blackUserNameInput"
-      placeholder="Enter a name for the black pieces user..."
-    />
-    <button
-      id="blackUserNameButton"
-      class="button"
-      onclick="onBlackUserNameSubmit()"
-    >
-      Enter user
-    </button>
-    <p id="blackUserName"></p>
-
     <main class="main">
-      <div class="pieces-container" id="whitePiecesContainer"></div>
+      <div class="sidepanel">
+        <input
+          class="input"
+          type="text"
+          minlength="1"
+          maxlength="30"
+          id="whiteUserNameInput"
+          placeholder="Enter a name for the white pieces user..."
+        />
+        <button
+          id="whiteUserNameButton"
+          class="button"
+          onclick="onWhiteUserNameSubmit()"
+        >
+          Enter user
+        </button>
+        <p id="whiteUserName"></p>
+        <div class="pieces-container" id="blackPiecesContainer"></div>
+      </div>
       <div id="chessboard" class="chess-board"></div>
-      <div class="pieces-container" id="blackPiecesContainer"></div>
+      <div class="sidepanel">
+        <input
+          class="input"
+          type="text"
+          minlength="1"
+          maxlength="30"
+          id="blackUserNameInput"
+          placeholder="Enter a name for the black pieces user..."
+        />
+        <button
+          id="blackUserNameButton"
+          class="button"
+          onclick="onBlackUserNameSubmit()"
+        >
+          Enter user
+        </button>
+        <p id="blackUserName"></p>
+        <div class="pieces-container" id="whitePiecesContainer"></div>
+      </div>
     </main>
 
     <script src="script.js"></script>

@@ -130,6 +130,8 @@ function onBlackUserNameSubmit() {
 function clearUserNames() {
   document.getElementById("whiteUserName").innerText = "";
   document.getElementById("blackUserName").innerText = "";
+  document.getElementById("whiteUserNameInput").value = "";
+  document.getElementById("blackUserNameInput").value = "";
 }
 
 for (let x = 7; x >= 0; x--) {
