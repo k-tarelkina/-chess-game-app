@@ -29,6 +29,7 @@ public:
   void OnResize(ultralight::Window *window, uint32_t width, uint32_t height);
 
   void onCellClicked(const JSObject &obj, const JSArgs &args);
+  void onStartGame(const JSObject &obj, const JSArgs &args);
   void onStartGameOver(const JSObject &obj, const JSArgs &args);
   void onAddWhitePiecesUser(const JSObject &obj, const JSArgs &args);
   void onAddBlackPiecesUser(const JSObject &obj, const JSArgs &args);
@@ -44,8 +45,6 @@ public:
   void showMessage(const std::string &message);
   void clearMessage();
 
-  void enableStartGameOverButton();
-  void disableStartGameOverButton();
   void clearBoard();
   void clearUserNames();
 

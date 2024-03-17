@@ -59,12 +59,6 @@ void Chessboard::onCellClicked(int x, int y)
   bool moveToThisCell = selectedCell_ != nullptr && selectedCell_->hasPiece();
   if (moveToThisCell && usersEntered())
   {
-    if (!gameInProgress)
-    {
-      gameInProgress = true;
-      ui_->enableStartGameOverButton();
-    }
-
     ChessPiece *piece = selectedCell_->getPiece();
     piece->moveTo(x, y);
     clearCellsHighlight();
@@ -102,7 +96,6 @@ void Chessboard::onCellClicked(int x, int y)
 void Chessboard::onUiReady()
 {
   initializeBoard();
-  initializePieces();
 }
 
 void Chessboard::clearCellsHighlight()
@@ -179,10 +172,15 @@ void Chessboard::switchColorTurn()
   currentColorTurn_ = currentColorTurn_ == Color::White ? Color::Black : Color::White;
 }
 
+void Chessboard::onStartGame()
+{
+  gameInProgress = true;
+  initializePieces();
+}
+
 void Chessboard::onStartGameOver()
 {
   gameInProgress = false;
-  ui_->disableStartGameOverButton();
   ui_->clearBoard();
   ui_->clearUserNames();
   whitePiecesUser_ = "";
@@ -194,9 +192,6 @@ void Chessboard::onStartGameOver()
 
   selectedCell_ = nullptr;
   currentColorTurn_ = Color::White;
-
-  initializeBoard();
-  initializePieces();
 }
 
 void Chessboard::onAddWhitePiecesUser(const std::string &username)

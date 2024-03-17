@@ -28,6 +28,7 @@ void UI::OnDOMReady(ultralight::View *caller,
   JSObject global = JSGlobalObject();
 
   global["onCellClicked"] = BindJSCallback(&UI::onCellClicked);
+  global["onStartGame"] = BindJSCallback(&UI::onStartGame);
   global["onStartGameOver"] = BindJSCallback(&UI::onStartGameOver);
   global["onAddWhitePiecesUser"] = BindJSCallback(&UI::onAddWhitePiecesUser);
   global["onAddBlackPiecesUser"] = BindJSCallback(&UI::onAddBlackPiecesUser);
@@ -53,6 +54,14 @@ void UI::onCellClicked(const JSObject &obj, const JSArgs &args)
   for (auto observer : uiObservers_)
   {
     observer->onCellClicked(args[0], args[1]);
+  }
+}
+
+void UI::onStartGame(const JSObject &obj, const JSArgs &args)
+{
+  for (auto observer : uiObservers_)
+  {
+    observer->onStartGame();
   }
 }
 
@@ -145,16 +154,6 @@ void UI::showMessage(const std::string &message)
 void UI::clearMessage()
 {
   view()->EvaluateScript("clearMessage()");
-}
-
-void UI::enableStartGameOverButton()
-{
-  view()->EvaluateScript("enableStartGameOverButton()");
-}
-
-void UI::disableStartGameOverButton()
-{
-  view()->EvaluateScript("disableStartGameOverButton()");
 }
 
 void UI::clearBoard()

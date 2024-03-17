@@ -25,6 +25,7 @@ public:
   void initializePieces();
 
   void onCellClicked(int x, int y) override;
+  void onStartGame() override;
   void onStartGameOver() override;
   void onUiReady() override;
   void onAddWhitePiecesUser(const std::string &username) override;
