@@ -36,7 +36,7 @@ public:
   void clearCell(int x, int y);
 
   bool hasPiece(int x, int y);
-  bool isUnderThreat(int x, int y);
+  bool isUnderThreat(int x, int y, ChessPiece *checkFor);
 
   void addDeadPiece(ChessPiece *piece);
 

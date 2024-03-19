@@ -38,7 +38,7 @@ protected:
   bool isPieceOfOppositeColor(int x, int y);
   bool hasPiece(int x, int y);
   bool isKingOfOppositeColor(int x, int y);
-  bool isUnderThreat(int x, int y);
+  bool isUnderThreat(int x, int y, ChessPiece *checkFor);
 
   virtual std::vector<Coordinates> getAllPaths() = 0;
 };

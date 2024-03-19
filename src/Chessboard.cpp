@@ -155,10 +155,15 @@ bool Chessboard::hasPiece(int x, int y)
   return cells_[x][y].hasPiece();
 }
 
-bool Chessboard::isUnderThreat(int x, int y)
+bool Chessboard::isUnderThreat(int x, int y, ChessPiece *checkFor)
 {
-  return std::any_of(pieces_.begin(), pieces_.end(), [x, y](ChessPiece *p)
-                     { return p->canFight(x, y); });
+  return std::any_of(pieces_.begin(), pieces_.end(), [x, y, checkFor](ChessPiece *p)
+                     { 
+                      if (p->getColor() == checkFor->getColor())
+                     {
+                      return false;
+                     }
+                     return p->canFight(x, y); });
 }
 
 void Chessboard::addDeadPiece(ChessPiece *piece)

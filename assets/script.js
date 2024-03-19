@@ -137,8 +137,8 @@ function onWhiteUserNameSubmit() {
   const label = document.getElementById("whiteUserName");
   const errorMessage = document.getElementById("whiteUserMessage");
 
-  if (name.length == 1 || name.length > 30) {
-    errorMessage.innerText = "Error: username should have 1-30 characters.";
+  if (name.length <= 1 || name.length > 30) {
+    errorMessage.innerText = "Error: username should have 2-30 characters.";
     return;
   }
 
@@ -165,8 +165,8 @@ function onBlackUserNameSubmit() {
   const label = document.getElementById("blackUserName");
   const errorMessage = document.getElementById("blackUserMessage");
 
-  if (name.length == 1 || name.length > 30) {
-    errorMessage.innerText = "Error: username should have 1-30 characters.";
+  if (name.length <= 1 || name.length > 30) {
+    errorMessage.innerText = "Error: username should have 2-30 characters.";
     return;
   }
 

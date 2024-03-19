@@ -28,8 +28,8 @@ std::vector<Coordinates> King::getAllPaths()
                  int x = p.first;
                  int y = p.second;
                  return x < 8 && y < 8 && x >= 0 && y >= 0 &&
-                        !this->isPieceOfSameColor(x, y) &&
-                        !this->isUnderThreat(x, y);
+                        !this->isPieceOfSameColor(x, y); // &&
+                                                         //! this->isUnderThreat(x, y, this);
                });
 
   return correctPaths;
@@ -64,5 +64,5 @@ bool King::cannotMove()
              correctPaths.begin(),
              correctPaths.end(),
              [this](const Coordinates &c)
-             { return this->isUnderThreat(c.first, c.second); });
+             { return this->isUnderThreat(c.first, c.second, this); });
 }

@@ -128,7 +128,7 @@ bool ChessPiece::hasPiece(int x, int y)
   return chessboard_->hasPiece(x, y);
 }
 
-bool ChessPiece::isUnderThreat(int x, int y)
+bool ChessPiece::isUnderThreat(int x, int y, ChessPiece *checkFor)
 {
-  return chessboard_->isUnderThreat(x, y);
+  return chessboard_->isUnderThreat(x, y, checkFor);
 }
