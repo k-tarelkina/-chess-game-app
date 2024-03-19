@@ -45,6 +45,10 @@ public:
   void showMessage(const std::string &message);
   void clearMessage();
 
+  void startTimer();
+  void resetTimer();
+  void stopTimer();
+
   void clearBoard();
   void clearUserNames();
 

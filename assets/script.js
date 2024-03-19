@@ -196,6 +196,35 @@ function clearUserNames() {
   document.getElementById("blackUserNameInput").value = "";
 }
 
+let interval;
+
+function formatSeconds(seconds) {
+  if (seconds < 60) {
+    return `0:${seconds < 10 ? 0 : ""}${seconds}`;
+  }
+  const rest = seconds % 60;
+
+  return `${(seconds - (seconds % 60)) / 60}:${rest < 10 ? 0 : ""}${rest}`;
+}
+
+function startTimer() {
+  let currentSeconds = 0;
+  interval = setInterval(() => {
+    currentSeconds += 1;
+    document.getElementById("timer").innerText = formatSeconds(currentSeconds);
+  }, 1000);
+}
+
+function resetTimer() {
+  if (interval) clearInterval(interval);
+  startTimer();
+}
+
+function stopTimer() {
+  if (interval) clearInterval(interval);
+  document.getElementById("timer").innerText = "";
+}
+
 for (let x = 7; x >= 0; x--) {
   for (let y = 0; y < 8; y++) {
     const element = document.createElement("div");

@@ -165,3 +165,18 @@ void UI::clearUserNames()
 {
   view()->EvaluateScript("clearUserNames()");
 }
+
+void UI::startTimer()
+{
+  view()->EvaluateScript("startTimer()");
+}
+
+void UI::resetTimer()
+{
+  view()->EvaluateScript("resetTimer()");
+}
+
+void UI::stopTimer()
+{
+  view()->EvaluateScript("stopTimer()");
+}
